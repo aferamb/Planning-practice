@@ -258,7 +258,7 @@ def main():
         # Write the initial part of the problem
 
         f.write("(define (problem " + problem_name + ")\n")
-        f.write("(:domain drone-domain)\n")
+        f.write("(:domain ubermedics)\n")
         f.write("(:objects\n")
 
         ######################################################################
@@ -293,7 +293,28 @@ def main():
         f.write("(:init\n")
 
         # TODO: Initialize all facts here!
+        # Drones start at depot
+        for x in drone:
+            f.write(f"\t(drone-at {x} depot)\n")
+            f.write(f"\t(arm-free-left {x})\n")
+            f.write(f"\t(arm-free-right {x})\n")
 
+
+        # Crates start at depot
+        for x in crate:
+            f.write(f"\t(crate-at {x} depot)\n")
+
+        # Assign each crate a content type (food or medicine)
+        for i in range(len(content_types)):
+            for c in crates_with_contents[i]:
+                f.write("\t(crate-has " + c + " " + content_types[i] + ")\n")
+
+        # Place each person at a random location (not depot)
+        for i in range(len(person)):
+            loc = location[random.randint(1, len(location)-1)]
+            f.write("\t(person-at " + person[i] + " " + loc + ")\n")
+
+        ######################
         f.write(")\n")
 
         ######################################################################
@@ -304,15 +325,14 @@ def main():
         # All Drones should end up at the depot
         for x in drone:
             f.write("\n")
-            # TODO: Write a goal that the drone x is at the depot
-
+            f.write("\t(drone-at " + x + " depot)")
+            
         for x in range(options.persons):
             for y in range(len(content_types)):
                 if need[x][y]:
                     person_name = person[x]
                     content_name = content_types[y]
-                    # TODO: write a goal that the person needs a crate
-                    # with this specific content
+                    f.write("\t(person-has " + person_name + " " + content_name + ")\n")
 
         f.write("\t))\n")
         f.write(")\n")
