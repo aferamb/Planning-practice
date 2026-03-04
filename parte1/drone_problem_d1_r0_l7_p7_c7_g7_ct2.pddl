@@ -1,4 +1,4 @@
-(define (problem drone_problem_d1_r0_l10_p10_c10_g10_ct2)
+(define (problem drone_problem_d1_r0_l7_p7_c7_g7_ct2)
 (:domain ubermedics)
 (:objects
 	drone1 - drone
@@ -10,9 +10,6 @@
 	loc5 - location
 	loc6 - location
 	loc7 - location
-	loc8 - location
-	loc9 - location
-	loc10 - location
 	crate1 - crate
 	crate2 - crate
 	crate3 - crate
@@ -20,9 +17,6 @@
 	crate5 - crate
 	crate6 - crate
 	crate7 - crate
-	crate8 - crate
-	crate9 - crate
-	crate10 - crate
 	food - contents
 	medicine - contents
 	person1 - person
@@ -32,9 +26,6 @@
 	person5 - person
 	person6 - person
 	person7 - person
-	person8 - person
-	person9 - person
-	person10 - person
 )
 (:init
 	(drone-at drone1 depot)
@@ -47,41 +38,29 @@
 	(crate-at crate5 depot)
 	(crate-at crate6 depot)
 	(crate-at crate7 depot)
-	(crate-at crate8 depot)
-	(crate-at crate9 depot)
-	(crate-at crate10 depot)
 	(crate-has crate1 food)
-	(crate-has crate2 medicine)
-	(crate-has crate3 medicine)
+	(crate-has crate2 food)
+	(crate-has crate3 food)
 	(crate-has crate4 medicine)
 	(crate-has crate5 medicine)
 	(crate-has crate6 medicine)
 	(crate-has crate7 medicine)
-	(crate-has crate8 medicine)
-	(crate-has crate9 medicine)
-	(crate-has crate10 medicine)
-	(person-at person1 loc3)
-	(person-at person2 loc3)
-	(person-at person3 loc3)
-	(person-at person4 loc8)
-	(person-at person5 loc6)
-	(person-at person6 loc6)
-	(person-at person7 loc7)
-	(person-at person8 loc4)
-	(person-at person9 loc1)
-	(person-at person10 loc9)
+	(person-at person1 loc1)
+	(person-at person2 loc5)
+	(person-at person3 loc5)
+	(person-at person4 loc6)
+	(person-at person5 loc2)
+	(person-at person6 loc3)
+	(person-at person7 loc1)
 )
 (:goal (and
 	(drone-at drone1 depot)
+	(person-has person1 food)
 	(person-has person1 medicine)
-	(person-has person2 medicine)
+	(person-has person2 food)
 	(person-has person3 medicine)
 	(person-has person4 medicine)
+	(person-has person5 food)
 	(person-has person5 medicine)
-	(person-has person7 medicine)
-	(person-has person8 food)
-	(person-has person8 medicine)
-	(person-has person9 medicine)
-	(person-has person10 medicine)
 	))
 )

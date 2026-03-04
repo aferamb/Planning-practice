@@ -6,7 +6,7 @@
     depot loc1 loc2 - location
     p1 p2 - person
     b1 b2 b3 - crate
-    food medicine water - content
+    food medicine water - contents
 )
 
 (:init
@@ -29,6 +29,7 @@
 
 (:goal
     (and
+        (drone-at d1 depot)
         (person-has p1 food)
         (person-has p2 medicine)
     )

@@ -1,4 +1,4 @@
-(define (problem drone_problem_d1_r0_l10_p10_c10_g10_ct2)
+(define (problem drone_problem_d1_r0_l15_p15_c15_g15_ct2)
 (:domain ubermedics)
 (:objects
 	drone1 - drone
@@ -13,6 +13,11 @@
 	loc8 - location
 	loc9 - location
 	loc10 - location
+	loc11 - location
+	loc12 - location
+	loc13 - location
+	loc14 - location
+	loc15 - location
 	crate1 - crate
 	crate2 - crate
 	crate3 - crate
@@ -23,6 +28,11 @@
 	crate8 - crate
 	crate9 - crate
 	crate10 - crate
+	crate11 - crate
+	crate12 - crate
+	crate13 - crate
+	crate14 - crate
+	crate15 - crate
 	food - contents
 	medicine - contents
 	person1 - person
@@ -35,6 +45,11 @@
 	person8 - person
 	person9 - person
 	person10 - person
+	person11 - person
+	person12 - person
+	person13 - person
+	person14 - person
+	person15 - person
 )
 (:init
 	(drone-at drone1 depot)
@@ -50,38 +65,58 @@
 	(crate-at crate8 depot)
 	(crate-at crate9 depot)
 	(crate-at crate10 depot)
+	(crate-at crate11 depot)
+	(crate-at crate12 depot)
+	(crate-at crate13 depot)
+	(crate-at crate14 depot)
+	(crate-at crate15 depot)
 	(crate-has crate1 food)
-	(crate-has crate2 medicine)
-	(crate-has crate3 medicine)
-	(crate-has crate4 medicine)
+	(crate-has crate2 food)
+	(crate-has crate3 food)
+	(crate-has crate4 food)
 	(crate-has crate5 medicine)
 	(crate-has crate6 medicine)
 	(crate-has crate7 medicine)
 	(crate-has crate8 medicine)
 	(crate-has crate9 medicine)
 	(crate-has crate10 medicine)
-	(person-at person1 loc3)
+	(crate-has crate11 medicine)
+	(crate-has crate12 medicine)
+	(crate-has crate13 medicine)
+	(crate-has crate14 medicine)
+	(crate-has crate15 medicine)
+	(person-at person1 loc8)
 	(person-at person2 loc3)
-	(person-at person3 loc3)
-	(person-at person4 loc8)
-	(person-at person5 loc6)
-	(person-at person6 loc6)
+	(person-at person3 loc2)
+	(person-at person4 loc11)
+	(person-at person5 loc8)
+	(person-at person6 loc7)
 	(person-at person7 loc7)
-	(person-at person8 loc4)
-	(person-at person9 loc1)
-	(person-at person10 loc9)
+	(person-at person8 loc1)
+	(person-at person9 loc14)
+	(person-at person10 loc5)
+	(person-at person11 loc15)
+	(person-at person12 loc12)
+	(person-at person13 loc2)
+	(person-at person14 loc5)
+	(person-at person15 loc2)
 )
 (:goal (and
 	(drone-at drone1 depot)
-	(person-has person1 medicine)
 	(person-has person2 medicine)
 	(person-has person3 medicine)
-	(person-has person4 medicine)
+	(person-has person4 food)
 	(person-has person5 medicine)
+	(person-has person6 medicine)
+	(person-has person7 food)
 	(person-has person7 medicine)
 	(person-has person8 food)
 	(person-has person8 medicine)
-	(person-has person9 medicine)
+	(person-has person9 food)
 	(person-has person10 medicine)
+	(person-has person12 medicine)
+	(person-has person13 medicine)
+	(person-has person14 medicine)
+	(person-has person15 medicine)
 	))
 )

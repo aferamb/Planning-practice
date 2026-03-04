@@ -6,7 +6,7 @@
     depot loc1 - location
     p1 - person
     b1 - crate
-    food - content
+    food - contents
   )
 
   (:init
@@ -20,6 +20,7 @@
 
   (:goal
     (and
+      (drone-at d1 depot)
       (person-has p1 food)
     )
   )
