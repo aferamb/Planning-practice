@@ -24,8 +24,8 @@
 	(person-at person2 loc2)
 )
 (:goal (and
-	(drone-at drone1 depot)
-	(person-has person1 food)
-	(person-has person2 medicine)
+
+	(drone-at drone1 depot)	(person-has person1 medicine)
+	(person-has person2 food)
 	))
 )
