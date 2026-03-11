@@ -15,6 +15,7 @@ import argparse
 import csv
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -28,6 +29,10 @@ FF_TIME_RE = re.compile(r"([0-9]+(?:\.[0-9]+)?)\s+seconds total time")
 
 # Regular expression to count plan steps in FF output.
 PLAN_LINE_RE = re.compile(r"^\s*(?:step\s+\d+:|\d+:)", re.MULTILINE)
+
+# Robust solve/unsolve markers across FF wrappers and versions.
+SOLVED_RE = re.compile(r"found legal plan as follows", re.IGNORECASE)
+UNSOLVABLE_RE = re.compile(r"problem proven unsolvable|goal can be simplified to false", re.IGNORECASE)
 
 
 @dataclass
@@ -142,6 +147,8 @@ def run_command(
         if isinstance(out, bytes):
             out = out.decode(errors="replace")
         return 124, out, True
+    except FileNotFoundError:
+        return 127, f"command not found: {cmd[0]}", False
 
 
 def make_error_excerpt(text: str, max_lines: int = 6) -> str:
@@ -199,7 +206,7 @@ def generate_problem(
 
 def parse_ff_output(text: str) -> tuple[bool, float | None, int | None]:
     """Parse solved flag, planner time, and plan length from FF text output."""
-    solved = "ff: found legal plan as follows" in text
+    solved = SOLVED_RE.search(text) is not None
 
     ff_time = None
     time_match = FF_TIME_RE.search(text)
@@ -216,15 +223,25 @@ def parse_ff_output(text: str) -> tuple[bool, float | None, int | None]:
 
 def run_ff(domain_file: Path, problem_file: Path, timeout_s: int) -> BenchmarkRow:
     """Run FF for one generated problem and return one benchmark row."""
-    # FF expects paths relative to current working directory when called through planutils wrapper.
-    domain_rel = os.path.relpath(domain_file, problem_file.parent)
-    problem_rel = problem_file.name
+    # Keep both PDDL files local to planner cwd to avoid wrapper/path quirks.
+    planner_cwd = problem_file.parent
+    domain_local = planner_cwd / "__benchmark_domain__.pddl"
+    try:
+        if domain_local.is_symlink() or domain_local.exists():
+            domain_local.unlink()
+        domain_local.symlink_to(domain_file.resolve())
+    except OSError:
+        # Fallback when symlinks are unavailable in the environment.
+        shutil.copyfile(domain_file.resolve(), domain_local)
+
+    domain_arg = domain_local.name
+    problem_arg = problem_file.name
 
     # Try planutils first (portable when ff is installed through planutils).
     attempts: list[tuple[str, list[str]]] = [
-        ("planutils", ["planutils", "run", "ff", "--", domain_rel, problem_rel]),
+        ("planutils", ["planutils", "run", "ff", "--", domain_arg, problem_arg]),
         # Fallback: direct ff binary, useful when planutils wrapper fails.
-        ("ff", ["ff", domain_rel, problem_rel]),
+        ("ff", ["ff", domain_arg, problem_arg]),
     ]
 
     size = extract_size_from_name(problem_file.name)
@@ -233,10 +250,16 @@ def run_ff(domain_file: Path, problem_file: Path, timeout_s: int) -> BenchmarkRo
 
     for backend_name, cmd in attempts:
         start = time.perf_counter()
-        code, out, timed_out = run_command(cmd, cwd=problem_file.parent, timeout_s=timeout_s)
-        total_wall_time += time.perf_counter() - start
+        code, out, timed_out = run_command(cmd, cwd=planner_cwd, timeout_s=timeout_s)
+        attempt_wall_time = time.perf_counter() - start
+        total_wall_time += attempt_wall_time
 
         solved, ff_time, plan_steps = parse_ff_output(out)
+        unsolvable = UNSOLVABLE_RE.search(out) is not None
+
+        # Some wrappers return code 0 but alter stdout formatting, so treat this as solved.
+        if (not solved) and code == 0 and (ff_time is not None) and (not unsolvable):
+            solved = True
 
         if timed_out:
             return BenchmarkRow(
@@ -244,7 +267,7 @@ def run_ff(domain_file: Path, problem_file: Path, timeout_s: int) -> BenchmarkRo
                 status="timeout",
                 solved=False,
                 ff_time_s=None,
-                wall_time_s=total_wall_time,
+                wall_time_s=attempt_wall_time,
                 plan_steps=None,
                 problem_file=str(problem_file),
                 solver_backend=backend_name,
@@ -257,7 +280,7 @@ def run_ff(domain_file: Path, problem_file: Path, timeout_s: int) -> BenchmarkRo
                 status="solved",
                 solved=True,
                 ff_time_s=ff_time,
-                wall_time_s=total_wall_time,
+                wall_time_s=attempt_wall_time,
                 plan_steps=plan_steps,
                 problem_file=str(problem_file),
                 solver_backend=backend_name,
@@ -496,7 +519,7 @@ def run_benchmark(
     rows: list[BenchmarkRow] = []
 
     for size in sizes:
-        ok, problem_path, _ = generate_problem(size, generator_file, problems_dir, seed_base)
+        ok, problem_path, gen_out = generate_problem(size, generator_file, problems_dir, seed_base)
 
         if not ok:
             rows.append(

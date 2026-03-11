@@ -208,3 +208,6 @@ __marimo__/
 
 # Planner artifacts
 *.plan
+
+# Problems for the grafs
+parte1/results/problems/
