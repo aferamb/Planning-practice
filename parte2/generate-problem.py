@@ -5,11 +5,13 @@
 # python3 generate-problem.py -d 1 -r 1 -l 4 -p 4 -c 6 -g 4 -a 4 --exercise 1
 #
 # Exercise 2.2
-# python3 generate-problem.py -d 1 -r 1 -l 4 -p 4 -c 6 -g 4 -a 4 --exercise 2
+# python3 generate-problem.py -d 2 -r 2 -l 4 -p 4 -c 6 -g 4 -a 4 --exercise 2
 
 # Run (examples): 
+# planutils run ff -- dronedomain.pddl drone_problem_ex1_d1_r1_l4_p4_c6_g4_a4.pddl
 # planutils run metric-ff -- dronedomain2.pddl drone_problem_ex2_d1_r1_l4_p4_c6_g4_a4.pddl
 # planutils run downward -- --alias lama-first dronedomain2.pddl drone_problem_ex2_d1_r1_l4_p4_c6_g4_a4.pddl
+# Óptimo y sirve para parte 1 y 2: planutils run downward -- --alias seq-opt-lmcut dronedomain2.pddl drone_problem_ex2_d1_r1_l4_p4_c6_g4_a4.pddl
 
 from optparse import OptionParser
 import random

@@ -37,7 +37,6 @@
         :duration (= ?duration (fly-cost ?from ?to))
         :condition (and
             (at start (drone-at ?d ?from))
-            (at start (drone-free ?d))
             (at start (drone-available ?d))
         )
         :effect (and

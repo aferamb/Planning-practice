@@ -33,7 +33,6 @@
         :parameters (?d - drone ?from - location ?to - location)
         :precondition (and
             (drone-at ?d ?from)
-            (drone-free ?d)
         )
         :effect (and
             (not (drone-at ?d ?from))
