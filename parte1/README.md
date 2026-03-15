@@ -23,7 +23,7 @@ parte1/
 - `planutils` installed in your environment
 - FF planner available through `planutils run ff`
 - pyperplan available through `planutils run pyperplan`
-- Optional: `matplotlib` (for nicer PNG plots in the part 1.3 benchmark)
+- `matplotlib` for readable PNG plots in part 1.3 (titles, axes, legends)
 
 Quick checks:
 
@@ -201,6 +201,7 @@ Or press Enter to run with defaults.
 | `--domain` | `dronedomain.pddl` | Domain PDDL path |
 | `--generator` | `generate-problem.py` | Generator script path (used when `--problem-files` is not given) |
 | `--results-dir` | `results` | Output directory |
+| `--allow-basic-plots` | `False` | Allow unlabeled basic PNG fallback if matplotlib is unavailable |
 | `--problem-files` | `None` | Existing PDDL files (skip generation) |
 
 ## 7. Quick Run Examples

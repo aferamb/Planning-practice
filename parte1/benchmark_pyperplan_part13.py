@@ -27,6 +27,8 @@ try:
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+    from matplotlib.patches import Patch
 
     HAVE_MATPLOTLIB = True
 except Exception:
@@ -103,6 +105,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--domain", default="dronedomain.pddl", help="path to domain file")
     parser.add_argument("--generator", default="generate-problem.py", help="path to generator script")
     parser.add_argument("--results-dir", default="results", help="output folder")
+    parser.add_argument(
+        "--allow-basic-plots",
+        action="store_true",
+        help="allow basic PNG plots without labels/legend when matplotlib is unavailable",
+    )
     parser.add_argument(
         "--problem-files",
         nargs="*",
@@ -912,11 +919,17 @@ def save_bar_plot(rows: list[RunRow], output_path: Path, title: str, timeout_s: 
     colors = ["#1f77b4" if r.status == "solved" else "#d62728" for r in rows]
     plt.bar(labels, values, color=colors)
     plt.axhline(timeout_s, color="gray", linestyle="--", linewidth=1, label=f"timeout={timeout_s}s")
+    legend_handles = [
+        Patch(facecolor="#1f77b4", label="solved"),
+        Patch(facecolor="#d62728", label="not solved (timeout/error/unsolved)"),
+        Line2D([0], [0], color="gray", linestyle="--", linewidth=1, label=f"timeout={timeout_s}s"),
+    ]
     plt.ylabel("Time (s)")
+    plt.xlabel("Search / heuristic combination")
     plt.title(title)
     plt.xticks(rotation=25, ha="right")
     plt.grid(True, axis="y", alpha=0.3)
-    plt.legend()
+    plt.legend(handles=legend_handles)
     plt.tight_layout()
     plt.savefig(output_path, dpi=140)
     plt.close()
@@ -1290,6 +1303,11 @@ def main() -> None:
         raise FileNotFoundError(f"Domain file not found: {domain_file}")
     if args.problem_files is None and not generator_file.exists():
         raise FileNotFoundError(f"Generator file not found: {generator_file}")
+    if not HAVE_MATPLOTLIB and not args.allow_basic_plots:
+        raise RuntimeError(
+            "matplotlib is required to generate readable PNG plots with title/axes/legend. "
+            "Install it (e.g. `pip install matplotlib`) or use --allow-basic-plots."
+        )
 
     results_dir.mkdir(parents=True, exist_ok=True)
 
