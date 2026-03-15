@@ -15,6 +15,7 @@ import argparse
 import csv
 import os
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -92,7 +93,19 @@ def parse_args() -> argparse.Namespace:
     # Optional fixed seed. We derive per-size seed by adding complexity value.
     parser.add_argument("--seed-base", type=int, default=0, help="base seed (use -1 to disable)")
 
-    return parser.parse_args()
+    if len(sys.argv) > 1:
+        return parser.parse_args()
+
+    print("No se han recibido parámetros por línea de comandos.")
+    print("Modo interactivo: escribe argumentos como en CLI o pulsa Enter para usar valores por defecto.")
+    try:
+        raw_args = input("¿Qué parámetros quieres meter? ").strip()
+    except EOFError:
+        raw_args = ""
+
+    if not raw_args:
+        return parser.parse_args([])
+    return parser.parse_args(shlex.split(raw_args))
 
 
 def make_sizes(min_size: int, max_size: int, step: int) -> list[int]:

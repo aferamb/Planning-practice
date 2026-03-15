@@ -209,5 +209,5 @@ __marimo__/
 # Planner artifacts
 *.plan
 
-# Problems for the grafs
+# Regenerated benchmark problems (Parte 1)
 parte1/results/problems/
