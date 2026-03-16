@@ -20,8 +20,10 @@ import csv
 import datetime as dt
 import re
 import shlex
+import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -326,6 +328,11 @@ def alias_variants(alias: str) -> list[str]:
 def downward_attempts(
     domain_file: Path, problem_file: Path, alias: str, timeout_s: int, plan_file: Path
 ) -> list[tuple[str, list[str]]]:
+    """Build attempt list for Fast Downward.
+
+    NOTE: domain_file and problem_file should already be Linux-native paths
+    (not /mnt/c/... WSL paths) so that the Apptainer container can read them.
+    """
     d = str(domain_file)
     p = str(problem_file)
     attempts: list[tuple[str, list[str]]] = []
@@ -339,20 +346,6 @@ def downward_attempts(
                         "run",
                         "downward",
                         "--",
-                        "--alias",
-                        alias_name,
-                        "--overall-time-limit",
-                        str(timeout_s),
-                        "--plan-file",
-                        str(plan_file),
-                        d,
-                        p,
-                    ],
-                ),
-                (
-                    "downward",
-                    [
-                        "downward",
                         "--alias",
                         alias_name,
                         "--overall-time-limit",
@@ -396,6 +389,32 @@ def downward_attempts(
     return attempts
 
 
+def _is_launcher_missing(code: int, out: str) -> bool:
+    """True only if the launcher executable itself is absent (not if the PDDL
+    files are unreadable by the container)."""
+    if code == 127:
+        return True
+    if "command not found" in out:
+        return True
+    # FileNotFoundError raised by subprocess when the binary doesn't exist:
+    # the message is always '[Errno 2] No such file or directory: \'<binary>\''
+    # with the binary name at the end.  We must NOT trigger on the container
+    # complaint 'Error: Could not read file: /mnt/c/...' which also contains
+    # 'No such file or directory' but originates from inside the container.
+    import re as _re
+    if _re.search(r"\[Errno 2\] No such file or directory: '[^/]", out):
+        # Short path like 'fast-downward' → binary not found
+        return True
+    return False
+
+
+def _copy_to_tmp(src: Path, tmp_dir: str, name: str) -> Path:
+    """Copy *src* to *tmp_dir*/*name* and return the new path."""
+    dst = Path(tmp_dir) / name
+    shutil.copy2(src, dst)
+    return dst
+
+
 def run_planner_once(
     spec: PlannerSpec,
     size: int,
@@ -415,83 +434,107 @@ def run_planner_once(
     if plan_file.exists():
         plan_file.unlink()
 
-    attempts = metric_ff_attempts(domain_file, problem_file)
+    # For Fast Downward via planutils/Apptainer the container cannot access
+    # /mnt/c/... WSL paths.  Copy domain + problem to a native Linux /tmp
+    # directory so they are visible inside the container.  The plan file is
+    # also placed there and then copied back after the run.
+    tmp_dir: str | None = None
+    eff_domain = domain_file
+    eff_problem = problem_file
+    eff_plan_file = plan_file
+
     if spec.tool == "downward":
-        if spec.alias is None:
-            raise ValueError(f"Planner {spec.planner_id} needs alias")
-        attempts = downward_attempts(
-            domain_file, problem_file, spec.alias, timeout_s=timeout_s, plan_file=plan_file
-        )
+        tmp_dir = tempfile.mkdtemp(prefix="fd_bench_")
+        eff_domain = _copy_to_tmp(domain_file, tmp_dir, domain_file.name)
+        eff_problem = _copy_to_tmp(problem_file, tmp_dir, problem_file.name)
+        eff_plan_file = Path(tmp_dir) / f"size_{size}.plan"
 
-    last_row: RunRow | None = None
-    last_out = ""
-
-    for idx, (backend_name, cmd) in enumerate(attempts, start=1):
-        code, out, timed_out, wall = run_command(cmd, cwd=problem_file.parent, timeout_s=timeout_s)
-        last_out = out
-
-        plan_cost = parse_plan_cost(out)
-        plan_length = parse_plan_length(out)
+    try:
+        attempts = metric_ff_attempts(domain_file, problem_file)
         if spec.tool == "downward":
-            file_cost, file_length = parse_downward_plan_file(plan_file)
-            if plan_cost is None:
-                plan_cost = file_cost
-            if plan_length is None:
-                plan_length = file_length
+            if spec.alias is None:
+                raise ValueError(f"Planner {spec.planner_id} needs alias")
+            attempts = downward_attempts(
+                eff_domain, eff_problem, spec.alias,
+                timeout_s=timeout_s, plan_file=eff_plan_file
+            )
 
-        status = infer_status(code, out, timed_out, plan_cost, plan_length)
-        log_file = planner_log_dir / f"size_{size}_attempt_{idx}_{backend_name}.log"
-        log_file.write_text(out, encoding="utf-8")
+        last_row: RunRow | None = None
+        last_out = ""
 
-        keep_excerpt = status in {"error", "unsupported"} or (
-            status == "unsolved" and plan_cost is None and plan_length is None
-        )
-        row = RunRow(
+        for idx, (backend_name, cmd) in enumerate(attempts, start=1):
+            # Run from the tmp dir for downward so relative sas files land there
+            run_cwd = Path(tmp_dir) if tmp_dir else problem_file.parent
+            code, out, timed_out, wall = run_command(cmd, cwd=run_cwd, timeout_s=timeout_s)
+            last_out = out
+
+            plan_cost = parse_plan_cost(out)
+            plan_length = parse_plan_length(out)
+            if spec.tool == "downward":
+                # Copy plan file back from tmp to the artifacts dir if it exists
+                if eff_plan_file.exists() and eff_plan_file != plan_file:
+                    shutil.copy2(eff_plan_file, plan_file)
+                file_cost, file_length = parse_downward_plan_file(plan_file)
+                if plan_cost is None:
+                    plan_cost = file_cost
+                if plan_length is None:
+                    plan_length = file_length
+
+            status = infer_status(code, out, timed_out, plan_cost, plan_length)
+            log_file = planner_log_dir / f"size_{size}_attempt_{idx}_{backend_name}.log"
+            log_file.write_text(out, encoding="utf-8")
+
+            keep_excerpt = status in {"error", "unsupported"} or (
+                status == "unsolved" and plan_cost is None and plan_length is None
+            )
+            row = RunRow(
+                planner=spec.planner_id,
+                family=spec.family,
+                status=status,
+                size=size,
+                wall_time_s=wall,
+                plan_cost=plan_cost,
+                plan_length=plan_length,
+                error_excerpt=make_error_excerpt(out) if keep_excerpt else "",
+                problem_file=str(problem_file),
+            )
+            last_row = row
+
+            if status == "solved":
+                return row
+
+            if status == "timeout":
+                return row
+
+            # If this backend failed due to launcher availability, try next.
+            if _is_launcher_missing(code, out):
+                continue
+
+            # For unsupported alias/tool, do not keep trying variants.
+            if status == "unsupported":
+                return row
+
+            # Any deterministic non-launcher result becomes final.
+            if status in {"unsolved", "error"}:
+                return row
+
+        if last_row is not None:
+            return last_row
+
+        return RunRow(
             planner=spec.planner_id,
             family=spec.family,
-            status=status,
+            status="unsupported",
             size=size,
-            wall_time_s=wall,
-            plan_cost=plan_cost,
-            plan_length=plan_length,
-            error_excerpt=make_error_excerpt(out) if keep_excerpt else "",
+            wall_time_s=0.0,
+            plan_cost=None,
+            plan_length=None,
+            error_excerpt=make_error_excerpt(last_out) or "planner backend not available",
             problem_file=str(problem_file),
         )
-        last_row = row
-
-        if status == "solved":
-            return row
-
-        if status == "timeout":
-            return row
-
-        # If this backend failed due to launcher availability, try next backend.
-        launcher_missing = code in {127} or "No such file or directory" in out or "command not found" in out
-        if launcher_missing:
-            continue
-
-        # For unsupported alias/tool, do not keep trying variants that won't help.
-        if status == "unsupported":
-            return row
-
-        # Any deterministic non-launcher result becomes final for this planner run.
-        if status in {"unsolved", "error"}:
-            return row
-
-    if last_row is not None:
-        return last_row
-
-    return RunRow(
-        planner=spec.planner_id,
-        family=spec.family,
-        status="unsupported",
-        size=size,
-        wall_time_s=0.0,
-        plan_cost=None,
-        plan_length=None,
-        error_excerpt=make_error_excerpt(last_out) or "planner backend not available",
-        problem_file=str(problem_file),
-    )
+    finally:
+        if tmp_dir:
+            shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
 def generate_problems(
