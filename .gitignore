@@ -211,5 +211,8 @@ __marimo__/
 
 # Regenerated benchmark problems (Parte 1)
 parte1/results/problems/
+parte2/results/problems/
+parte3/results/problems/
 
 parte1/__pyperplan_problem__.pddl
+parte2/__pyperplan_problem__.pddl

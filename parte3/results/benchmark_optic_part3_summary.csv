@@ -1,0 +1,6 @@
+drones,carriers,max_solved_size,status_at_max,processing_time_s_at_max,first_plan_steps,first_makespan,last_plan_steps,last_makespan,delta_steps,delta_makespan,problem_file
+1,1,,not_found,,,,,,,,
+2,2,,not_found,,,,,,,,
+3,3,,not_found,,,,,,,,
+4,4,,not_found,,,,,,,,
+5,5,,not_found,,,,,,,,

@@ -61,6 +61,8 @@ UNSUPPORTED_RE = re.compile(
     r"(invalid alias|unknown alias|unrecognized arguments|command not found|not found|module not found|no such file or directory)",
     re.IGNORECASE,
 )
+PACKAGE_NOT_INSTALLED_RE = re.compile(r"package\s+\S+\s+is not installed", re.IGNORECASE)
+USAGE_RE = re.compile(r"(^|\n)\s*usage:\s", re.IGNORECASE)
 
 ERROR_EXCERPT_MD_MAX_LEN = 120
 
@@ -255,13 +257,39 @@ def parse_plan_length(output: str) -> int | None:
     return None
 
 
+def parse_downward_plan_file(plan_file: Path) -> tuple[float | None, int | None]:
+    if not plan_file.exists():
+        return None, None
+    try:
+        content = plan_file.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return None, None
+
+    plan_cost = None
+    cost_match = re.search(r";\s*cost\s*=\s*([0-9]+(?:\.[0-9]+)?)", content, re.IGNORECASE)
+    if cost_match:
+        plan_cost = float(cost_match.group(1))
+
+    plan_actions = [
+        line
+        for line in content.splitlines()
+        if line.strip() and not line.lstrip().startswith(";")
+    ]
+    plan_length = len(plan_actions) if plan_actions else None
+    return plan_cost, plan_length
+
+
 def infer_status(code: int, output: str, timed_out: bool, plan_cost: float | None, plan_length: int | None) -> str:
     if timed_out:
         return "timeout"
     if code == 127:
         return "unsupported"
+    if PACKAGE_NOT_INSTALLED_RE.search(output):
+        return "unsupported"
     if UNSUPPORTED_RE.search(output):
         return "unsupported"
+    if USAGE_RE.search(output) and plan_cost is None and plan_length is None:
+        return "error"
 
     solved_by_values = (plan_cost is not None) or (plan_length is not None)
     solved_by_text = SOLVED_RE.search(output) is not None and code == 0
@@ -272,7 +300,7 @@ def infer_status(code: int, output: str, timed_out: bool, plan_cost: float | Non
         return "unsolved"
 
     if code == 0:
-        return "unsolved"
+        return "error"
     return "error"
 
 
@@ -295,7 +323,9 @@ def alias_variants(alias: str) -> list[str]:
     return variants
 
 
-def downward_attempts(domain_file: Path, problem_file: Path, alias: str, timeout_s: int) -> list[tuple[str, list[str]]]:
+def downward_attempts(
+    domain_file: Path, problem_file: Path, alias: str, timeout_s: int, plan_file: Path
+) -> list[tuple[str, list[str]]]:
     d = str(domain_file)
     p = str(problem_file)
     attempts: list[tuple[str, list[str]]] = []
@@ -313,6 +343,8 @@ def downward_attempts(domain_file: Path, problem_file: Path, alias: str, timeout
                         alias_name,
                         "--overall-time-limit",
                         str(timeout_s),
+                        "--plan-file",
+                        str(plan_file),
                         d,
                         p,
                     ],
@@ -325,6 +357,8 @@ def downward_attempts(domain_file: Path, problem_file: Path, alias: str, timeout
                         alias_name,
                         "--overall-time-limit",
                         str(timeout_s),
+                        "--plan-file",
+                        str(plan_file),
                         d,
                         p,
                     ],
@@ -337,6 +371,8 @@ def downward_attempts(domain_file: Path, problem_file: Path, alias: str, timeout
                         alias_name,
                         "--overall-time-limit",
                         str(timeout_s),
+                        "--plan-file",
+                        str(plan_file),
                         d,
                         p,
                     ],
@@ -349,6 +385,8 @@ def downward_attempts(domain_file: Path, problem_file: Path, alias: str, timeout
                         alias_name,
                         "--overall-time-limit",
                         str(timeout_s),
+                        "--plan-file",
+                        str(plan_file),
                         d,
                         p,
                     ],
@@ -364,23 +402,50 @@ def run_planner_once(
     domain_file: Path,
     problem_file: Path,
     timeout_s: int,
+    logs_dir: Path,
+    planner_artifacts_dir: Path,
 ) -> RunRow:
+    planner_slug = spec.planner_id.replace(":", "__")
+    planner_log_dir = logs_dir / planner_slug
+    planner_log_dir.mkdir(parents=True, exist_ok=True)
+    planner_artifact_dir = planner_artifacts_dir / planner_slug
+    planner_artifact_dir.mkdir(parents=True, exist_ok=True)
+
+    plan_file = planner_artifact_dir / f"size_{size}.plan"
+    if plan_file.exists():
+        plan_file.unlink()
+
     attempts = metric_ff_attempts(domain_file, problem_file)
     if spec.tool == "downward":
         if spec.alias is None:
             raise ValueError(f"Planner {spec.planner_id} needs alias")
-        attempts = downward_attempts(domain_file, problem_file, spec.alias, timeout_s=timeout_s)
+        attempts = downward_attempts(
+            domain_file, problem_file, spec.alias, timeout_s=timeout_s, plan_file=plan_file
+        )
 
     last_row: RunRow | None = None
     last_out = ""
 
-    for backend_name, cmd in attempts:
+    for idx, (backend_name, cmd) in enumerate(attempts, start=1):
         code, out, timed_out, wall = run_command(cmd, cwd=problem_file.parent, timeout_s=timeout_s)
         last_out = out
 
         plan_cost = parse_plan_cost(out)
         plan_length = parse_plan_length(out)
+        if spec.tool == "downward":
+            file_cost, file_length = parse_downward_plan_file(plan_file)
+            if plan_cost is None:
+                plan_cost = file_cost
+            if plan_length is None:
+                plan_length = file_length
+
         status = infer_status(code, out, timed_out, plan_cost, plan_length)
+        log_file = planner_log_dir / f"size_{size}_attempt_{idx}_{backend_name}.log"
+        log_file.write_text(out, encoding="utf-8")
+
+        keep_excerpt = status in {"error", "unsupported"} or (
+            status == "unsolved" and plan_cost is None and plan_length is None
+        )
         row = RunRow(
             planner=spec.planner_id,
             family=spec.family,
@@ -389,7 +454,7 @@ def run_planner_once(
             wall_time_s=wall,
             plan_cost=plan_cost,
             plan_length=plan_length,
-            error_excerpt="" if status in {"solved", "unsolved", "timeout"} else make_error_excerpt(out),
+            error_excerpt=make_error_excerpt(out) if keep_excerpt else "",
             problem_file=str(problem_file),
         )
         last_row = row
@@ -535,6 +600,8 @@ def run_benchmark(
     problems: list[tuple[int, Path]],
     domain_file: Path,
     timeout_s: int,
+    logs_dir: Path,
+    planner_artifacts_dir: Path,
 ) -> list[RunRow]:
     rows: list[RunRow] = []
 
@@ -566,6 +633,8 @@ def run_benchmark(
                 domain_file=domain_file,
                 problem_file=problem_path,
                 timeout_s=timeout_s,
+                logs_dir=logs_dir,
+                planner_artifacts_dir=planner_artifacts_dir,
             )
             rows.append(row)
 
@@ -1052,6 +1121,8 @@ def main() -> None:
     generator_file = Path(args.generator).resolve()
     results_dir = Path(args.results_dir).resolve()
     problems_dir = results_dir / "problems"
+    logs_dir = results_dir / "raw_logs"
+    planner_artifacts_dir = results_dir / "planner_artifacts"
 
     if not domain_file.exists():
         raise FileNotFoundError(f"Domain file not found: {domain_file}")
@@ -1065,6 +1136,8 @@ def main() -> None:
 
     results_dir.mkdir(parents=True, exist_ok=True)
     problems_dir.mkdir(parents=True, exist_ok=True)
+    logs_dir.mkdir(parents=True, exist_ok=True)
+    planner_artifacts_dir.mkdir(parents=True, exist_ok=True)
 
     if args.problem_files:
         problems = load_existing_problems(args.problem_files)
@@ -1085,7 +1158,14 @@ def main() -> None:
     if not problems:
         raise RuntimeError("No problems available for benchmark.")
 
-    rows = run_benchmark(specs=PLANNERS, problems=problems, domain_file=domain_file, timeout_s=args.timeout)
+    rows = run_benchmark(
+        specs=PLANNERS,
+        problems=problems,
+        domain_file=domain_file,
+        timeout_s=args.timeout,
+        logs_dir=logs_dir,
+        planner_artifacts_dir=planner_artifacts_dir,
+    )
 
     all_csv, sat_csv, opt_csv = export_csvs(results_dir, rows)
     sat_summary, opt_summary, global_summary = compact_summary_rows(rows, PLANNERS)

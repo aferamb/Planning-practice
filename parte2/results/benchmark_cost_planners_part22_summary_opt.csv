@@ -1,0 +1,4 @@
+planner,family,max_solved_size,plan_cost_at_max_size,plan_length_at_max_size,wall_time_s_at_max_size,count_solved,count_timeout,count_unsolved,count_unsupported,count_error
+downward:seq-opt-lmcut,opt,-,-,-,-,0,0,0,0,11
+downward:seq-opt-bjolp,opt,-,-,-,-,0,0,0,0,11
+downward:seq-opt-fdss-2,opt,-,-,-,-,0,0,0,0,11

@@ -1,0 +1,198 @@
+[SCRIPT]	benchmark_ff_graph.py
+[CWD]	Planning-practice/parte1 (FF commands run from results/problems internally)
+[DEFAULTS]
+min_size	2
+max_size	60
+step	1
+timeout	60
+domain	dronedomain.pddl
+generator	generate-problem.py
+results_dir	results
+seed_base	0
+
+[PRECHECK_COMMANDS]
+(none)
+
+[REAL_DEFAULT_COMMANDS]
+0001	python3 generate-problem.py -d 1 -r 0 -l 2 -p 2 -c 2 -g 2
+0002	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl
+0003	python3 generate-problem.py -d 1 -r 0 -l 3 -p 3 -c 3 -g 3
+0004	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl
+0005	python3 generate-problem.py -d 1 -r 0 -l 4 -p 4 -c 4 -g 4
+0006	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl
+0007	python3 generate-problem.py -d 1 -r 0 -l 5 -p 5 -c 5 -g 5
+0008	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl
+0009	python3 generate-problem.py -d 1 -r 0 -l 6 -p 6 -c 6 -g 6
+0010	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl
+0011	python3 generate-problem.py -d 1 -r 0 -l 7 -p 7 -c 7 -g 7
+0012	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl
+0013	python3 generate-problem.py -d 1 -r 0 -l 8 -p 8 -c 8 -g 8
+0014	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl
+0015	python3 generate-problem.py -d 1 -r 0 -l 9 -p 9 -c 9 -g 9
+0016	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl
+0017	python3 generate-problem.py -d 1 -r 0 -l 10 -p 10 -c 10 -g 10
+0018	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl
+0019	python3 generate-problem.py -d 1 -r 0 -l 11 -p 11 -c 11 -g 11
+0020	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l11_p11_c11_g11_ct2.pddl
+0021	python3 generate-problem.py -d 1 -r 0 -l 12 -p 12 -c 12 -g 12
+0022	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l12_p12_c12_g12_ct2.pddl
+0023	python3 generate-problem.py -d 1 -r 0 -l 13 -p 13 -c 13 -g 13
+0024	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l13_p13_c13_g13_ct2.pddl
+0025	python3 generate-problem.py -d 1 -r 0 -l 14 -p 14 -c 14 -g 14
+0026	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l14_p14_c14_g14_ct2.pddl
+0027	python3 generate-problem.py -d 1 -r 0 -l 15 -p 15 -c 15 -g 15
+0028	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l15_p15_c15_g15_ct2.pddl
+0029	python3 generate-problem.py -d 1 -r 0 -l 16 -p 16 -c 16 -g 16
+0030	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l16_p16_c16_g16_ct2.pddl
+0031	python3 generate-problem.py -d 1 -r 0 -l 17 -p 17 -c 17 -g 17
+0032	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l17_p17_c17_g17_ct2.pddl
+0033	python3 generate-problem.py -d 1 -r 0 -l 18 -p 18 -c 18 -g 18
+0034	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l18_p18_c18_g18_ct2.pddl
+0035	python3 generate-problem.py -d 1 -r 0 -l 19 -p 19 -c 19 -g 19
+0036	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l19_p19_c19_g19_ct2.pddl
+0037	python3 generate-problem.py -d 1 -r 0 -l 20 -p 20 -c 20 -g 20
+0038	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l20_p20_c20_g20_ct2.pddl
+0039	python3 generate-problem.py -d 1 -r 0 -l 21 -p 21 -c 21 -g 21
+0040	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l21_p21_c21_g21_ct2.pddl
+0041	python3 generate-problem.py -d 1 -r 0 -l 22 -p 22 -c 22 -g 22
+0042	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l22_p22_c22_g22_ct2.pddl
+0043	python3 generate-problem.py -d 1 -r 0 -l 23 -p 23 -c 23 -g 23
+0044	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l23_p23_c23_g23_ct2.pddl
+0045	python3 generate-problem.py -d 1 -r 0 -l 24 -p 24 -c 24 -g 24
+0046	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l24_p24_c24_g24_ct2.pddl
+0047	python3 generate-problem.py -d 1 -r 0 -l 25 -p 25 -c 25 -g 25
+0048	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l25_p25_c25_g25_ct2.pddl
+0049	python3 generate-problem.py -d 1 -r 0 -l 26 -p 26 -c 26 -g 26
+0050	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l26_p26_c26_g26_ct2.pddl
+0051	python3 generate-problem.py -d 1 -r 0 -l 27 -p 27 -c 27 -g 27
+0052	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l27_p27_c27_g27_ct2.pddl
+0053	python3 generate-problem.py -d 1 -r 0 -l 28 -p 28 -c 28 -g 28
+0054	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l28_p28_c28_g28_ct2.pddl
+0055	python3 generate-problem.py -d 1 -r 0 -l 29 -p 29 -c 29 -g 29
+0056	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l29_p29_c29_g29_ct2.pddl
+0057	python3 generate-problem.py -d 1 -r 0 -l 30 -p 30 -c 30 -g 30
+0058	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l30_p30_c30_g30_ct2.pddl
+0059	python3 generate-problem.py -d 1 -r 0 -l 31 -p 31 -c 31 -g 31
+0060	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l31_p31_c31_g31_ct2.pddl
+0061	python3 generate-problem.py -d 1 -r 0 -l 32 -p 32 -c 32 -g 32
+0062	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l32_p32_c32_g32_ct2.pddl
+0063	python3 generate-problem.py -d 1 -r 0 -l 33 -p 33 -c 33 -g 33
+0064	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l33_p33_c33_g33_ct2.pddl
+0065	python3 generate-problem.py -d 1 -r 0 -l 34 -p 34 -c 34 -g 34
+0066	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l34_p34_c34_g34_ct2.pddl
+0067	python3 generate-problem.py -d 1 -r 0 -l 35 -p 35 -c 35 -g 35
+0068	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l35_p35_c35_g35_ct2.pddl
+0069	python3 generate-problem.py -d 1 -r 0 -l 36 -p 36 -c 36 -g 36
+0070	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l36_p36_c36_g36_ct2.pddl
+0071	python3 generate-problem.py -d 1 -r 0 -l 37 -p 37 -c 37 -g 37
+0072	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l37_p37_c37_g37_ct2.pddl
+0073	python3 generate-problem.py -d 1 -r 0 -l 38 -p 38 -c 38 -g 38
+0074	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l38_p38_c38_g38_ct2.pddl
+0075	python3 generate-problem.py -d 1 -r 0 -l 39 -p 39 -c 39 -g 39
+0076	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l39_p39_c39_g39_ct2.pddl
+0077	python3 generate-problem.py -d 1 -r 0 -l 40 -p 40 -c 40 -g 40
+0078	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l40_p40_c40_g40_ct2.pddl
+0079	python3 generate-problem.py -d 1 -r 0 -l 41 -p 41 -c 41 -g 41
+0080	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l41_p41_c41_g41_ct2.pddl
+0081	python3 generate-problem.py -d 1 -r 0 -l 42 -p 42 -c 42 -g 42
+0082	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l42_p42_c42_g42_ct2.pddl
+0083	python3 generate-problem.py -d 1 -r 0 -l 43 -p 43 -c 43 -g 43
+0084	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l43_p43_c43_g43_ct2.pddl
+0085	python3 generate-problem.py -d 1 -r 0 -l 44 -p 44 -c 44 -g 44
+0086	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l44_p44_c44_g44_ct2.pddl
+0087	python3 generate-problem.py -d 1 -r 0 -l 45 -p 45 -c 45 -g 45
+0088	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l45_p45_c45_g45_ct2.pddl
+0089	python3 generate-problem.py -d 1 -r 0 -l 46 -p 46 -c 46 -g 46
+0090	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l46_p46_c46_g46_ct2.pddl
+0091	python3 generate-problem.py -d 1 -r 0 -l 47 -p 47 -c 47 -g 47
+0092	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l47_p47_c47_g47_ct2.pddl
+0093	python3 generate-problem.py -d 1 -r 0 -l 48 -p 48 -c 48 -g 48
+0094	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l48_p48_c48_g48_ct2.pddl
+0095	python3 generate-problem.py -d 1 -r 0 -l 49 -p 49 -c 49 -g 49
+0096	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l49_p49_c49_g49_ct2.pddl
+0097	python3 generate-problem.py -d 1 -r 0 -l 50 -p 50 -c 50 -g 50
+0098	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l50_p50_c50_g50_ct2.pddl
+0099	python3 generate-problem.py -d 1 -r 0 -l 51 -p 51 -c 51 -g 51
+0100	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l51_p51_c51_g51_ct2.pddl
+0101	python3 generate-problem.py -d 1 -r 0 -l 52 -p 52 -c 52 -g 52
+0102	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l52_p52_c52_g52_ct2.pddl
+0103	python3 generate-problem.py -d 1 -r 0 -l 53 -p 53 -c 53 -g 53
+0104	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l53_p53_c53_g53_ct2.pddl
+0105	python3 generate-problem.py -d 1 -r 0 -l 54 -p 54 -c 54 -g 54
+0106	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l54_p54_c54_g54_ct2.pddl
+0107	python3 generate-problem.py -d 1 -r 0 -l 55 -p 55 -c 55 -g 55
+0108	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l55_p55_c55_g55_ct2.pddl
+0109	python3 generate-problem.py -d 1 -r 0 -l 56 -p 56 -c 56 -g 56
+0110	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l56_p56_c56_g56_ct2.pddl
+0111	python3 generate-problem.py -d 1 -r 0 -l 57 -p 57 -c 57 -g 57
+0112	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l57_p57_c57_g57_ct2.pddl
+0113	python3 generate-problem.py -d 1 -r 0 -l 58 -p 58 -c 58 -g 58
+0114	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l58_p58_c58_g58_ct2.pddl
+0115	python3 generate-problem.py -d 1 -r 0 -l 59 -p 59 -c 59 -g 59
+0116	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l59_p59_c59_g59_ct2.pddl
+0117	python3 generate-problem.py -d 1 -r 0 -l 60 -p 60 -c 60 -g 60
+0118	planutils run ff -- __benchmark_domain__.pddl drone_problem_d1_r0_l60_p60_c60_g60_ct2.pddl
+
+[FALLBACK_POTENTIAL_COMMANDS]
+0001	ff __benchmark_domain__.pddl drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl
+0002	ff __benchmark_domain__.pddl drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl
+0003	ff __benchmark_domain__.pddl drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl
+0004	ff __benchmark_domain__.pddl drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl
+0005	ff __benchmark_domain__.pddl drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl
+0006	ff __benchmark_domain__.pddl drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl
+0007	ff __benchmark_domain__.pddl drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl
+0008	ff __benchmark_domain__.pddl drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl
+0009	ff __benchmark_domain__.pddl drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl
+0010	ff __benchmark_domain__.pddl drone_problem_d1_r0_l11_p11_c11_g11_ct2.pddl
+0011	ff __benchmark_domain__.pddl drone_problem_d1_r0_l12_p12_c12_g12_ct2.pddl
+0012	ff __benchmark_domain__.pddl drone_problem_d1_r0_l13_p13_c13_g13_ct2.pddl
+0013	ff __benchmark_domain__.pddl drone_problem_d1_r0_l14_p14_c14_g14_ct2.pddl
+0014	ff __benchmark_domain__.pddl drone_problem_d1_r0_l15_p15_c15_g15_ct2.pddl
+0015	ff __benchmark_domain__.pddl drone_problem_d1_r0_l16_p16_c16_g16_ct2.pddl
+0016	ff __benchmark_domain__.pddl drone_problem_d1_r0_l17_p17_c17_g17_ct2.pddl
+0017	ff __benchmark_domain__.pddl drone_problem_d1_r0_l18_p18_c18_g18_ct2.pddl
+0018	ff __benchmark_domain__.pddl drone_problem_d1_r0_l19_p19_c19_g19_ct2.pddl
+0019	ff __benchmark_domain__.pddl drone_problem_d1_r0_l20_p20_c20_g20_ct2.pddl
+0020	ff __benchmark_domain__.pddl drone_problem_d1_r0_l21_p21_c21_g21_ct2.pddl
+0021	ff __benchmark_domain__.pddl drone_problem_d1_r0_l22_p22_c22_g22_ct2.pddl
+0022	ff __benchmark_domain__.pddl drone_problem_d1_r0_l23_p23_c23_g23_ct2.pddl
+0023	ff __benchmark_domain__.pddl drone_problem_d1_r0_l24_p24_c24_g24_ct2.pddl
+0024	ff __benchmark_domain__.pddl drone_problem_d1_r0_l25_p25_c25_g25_ct2.pddl
+0025	ff __benchmark_domain__.pddl drone_problem_d1_r0_l26_p26_c26_g26_ct2.pddl
+0026	ff __benchmark_domain__.pddl drone_problem_d1_r0_l27_p27_c27_g27_ct2.pddl
+0027	ff __benchmark_domain__.pddl drone_problem_d1_r0_l28_p28_c28_g28_ct2.pddl
+0028	ff __benchmark_domain__.pddl drone_problem_d1_r0_l29_p29_c29_g29_ct2.pddl
+0029	ff __benchmark_domain__.pddl drone_problem_d1_r0_l30_p30_c30_g30_ct2.pddl
+0030	ff __benchmark_domain__.pddl drone_problem_d1_r0_l31_p31_c31_g31_ct2.pddl
+0031	ff __benchmark_domain__.pddl drone_problem_d1_r0_l32_p32_c32_g32_ct2.pddl
+0032	ff __benchmark_domain__.pddl drone_problem_d1_r0_l33_p33_c33_g33_ct2.pddl
+0033	ff __benchmark_domain__.pddl drone_problem_d1_r0_l34_p34_c34_g34_ct2.pddl
+0034	ff __benchmark_domain__.pddl drone_problem_d1_r0_l35_p35_c35_g35_ct2.pddl
+0035	ff __benchmark_domain__.pddl drone_problem_d1_r0_l36_p36_c36_g36_ct2.pddl
+0036	ff __benchmark_domain__.pddl drone_problem_d1_r0_l37_p37_c37_g37_ct2.pddl
+0037	ff __benchmark_domain__.pddl drone_problem_d1_r0_l38_p38_c38_g38_ct2.pddl
+0038	ff __benchmark_domain__.pddl drone_problem_d1_r0_l39_p39_c39_g39_ct2.pddl
+0039	ff __benchmark_domain__.pddl drone_problem_d1_r0_l40_p40_c40_g40_ct2.pddl
+0040	ff __benchmark_domain__.pddl drone_problem_d1_r0_l41_p41_c41_g41_ct2.pddl
+0041	ff __benchmark_domain__.pddl drone_problem_d1_r0_l42_p42_c42_g42_ct2.pddl
+0042	ff __benchmark_domain__.pddl drone_problem_d1_r0_l43_p43_c43_g43_ct2.pddl
+0043	ff __benchmark_domain__.pddl drone_problem_d1_r0_l44_p44_c44_g44_ct2.pddl
+0044	ff __benchmark_domain__.pddl drone_problem_d1_r0_l45_p45_c45_g45_ct2.pddl
+0045	ff __benchmark_domain__.pddl drone_problem_d1_r0_l46_p46_c46_g46_ct2.pddl
+0046	ff __benchmark_domain__.pddl drone_problem_d1_r0_l47_p47_c47_g47_ct2.pddl
+0047	ff __benchmark_domain__.pddl drone_problem_d1_r0_l48_p48_c48_g48_ct2.pddl
+0048	ff __benchmark_domain__.pddl drone_problem_d1_r0_l49_p49_c49_g49_ct2.pddl
+0049	ff __benchmark_domain__.pddl drone_problem_d1_r0_l50_p50_c50_g50_ct2.pddl
+0050	ff __benchmark_domain__.pddl drone_problem_d1_r0_l51_p51_c51_g51_ct2.pddl
+0051	ff __benchmark_domain__.pddl drone_problem_d1_r0_l52_p52_c52_g52_ct2.pddl
+0052	ff __benchmark_domain__.pddl drone_problem_d1_r0_l53_p53_c53_g53_ct2.pddl
+0053	ff __benchmark_domain__.pddl drone_problem_d1_r0_l54_p54_c54_g54_ct2.pddl
+0054	ff __benchmark_domain__.pddl drone_problem_d1_r0_l55_p55_c55_g55_ct2.pddl
+0055	ff __benchmark_domain__.pddl drone_problem_d1_r0_l56_p56_c56_g56_ct2.pddl
+0056	ff __benchmark_domain__.pddl drone_problem_d1_r0_l57_p57_c57_g57_ct2.pddl
+0057	ff __benchmark_domain__.pddl drone_problem_d1_r0_l58_p58_c58_g58_ct2.pddl
+0058	ff __benchmark_domain__.pddl drone_problem_d1_r0_l59_p59_c59_g59_ct2.pddl
+0059	ff __benchmark_domain__.pddl drone_problem_d1_r0_l60_p60_c60_g60_ct2.pddl
+
+[RUNTIME_RULES_FOR_PLACEHOLDERS]
+(none)

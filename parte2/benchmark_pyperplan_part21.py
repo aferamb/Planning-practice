@@ -99,7 +99,7 @@ ERROR_EXCERPT_MD_MAX_LEN = 120
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Benchmark pyperplan for exercise 2.1")
     parser.add_argument("--min-size", type=int, default=2, help="minimum size for l=p=c=g")
-    parser.add_argument("--max-size", type=int, default=40, help="maximum size for l=p=c=g")
+    parser.add_argument("--max-size", type=int, default=10, help="maximum size for l=p=c=g")
     parser.add_argument("--step", type=int, default=2, help="size step")
     parser.add_argument("--timeout", type=int, default=60, help="timeout per run in seconds")
     parser.add_argument("--domain", default="dronedomain.pddl", help="path to domain file")

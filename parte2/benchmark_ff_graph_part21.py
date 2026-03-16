@@ -57,7 +57,7 @@ class BenchmarkRow:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run FF benchmark for exercise 2.1")
     parser.add_argument("--min-size", type=int, default=2, help="minimum complexity value")
-    parser.add_argument("--max-size", type=int, default=40, help="maximum complexity value")
+    parser.add_argument("--max-size", type=int, default=60, help="maximum complexity value")
     parser.add_argument("--step", type=int, default=2, help="increment between complexity values")
     parser.add_argument("--sizes", default=None, help="comma-separated list of sizes")
 
