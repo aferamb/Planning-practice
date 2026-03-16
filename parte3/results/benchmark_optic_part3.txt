@@ -1,24 +1,71 @@
 Benchmark Optic - Practice 1 Part 3 V2
-Generated at: 2026-03-16T04:03:33
+Generated at: 2026-03-16T13:34:27
 Args: {'min_drones': 1, 'max_drones': 5, 'min_size': 2, 'max_size': 20, 'step': 1, 'timeout': 60, 'stop_after_fails': 2, 'domain': 'dronedomain.pddl', 'generator': 'generate-problem.py', 'results_dir': 'results', 'carrier_capacity': 4, 'seed': None}
 
 [SUMMARY]
 drones	carriers	max_solved_size	status_at_max	processing_time_s_at_max	first_plan_steps	first_makespan	last_plan_steps	last_makespan	delta_steps	delta_makespan	problem_file
-1	1		not_found								
-2	2		not_found								
-3	3		not_found								
-4	4		not_found								
-5	5		not_found								
+1	1	20	solved	53.4900	94	8150.0930	79	6893.0780	-15	-1257.0150	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l20_p20_c20_g20_a4.pddl
+2	2	15	solved	35.5600	71	3060.0360	71	3060.0360	0	0.0000	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l15_p15_c15_g15_a4.pddl
+3	3	10	solved	46.6300	55	1773.0190	55	1773.0190	0	0.0000	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l10_p10_c10_g10_a4.pddl
+4	4	5	solved	27.7000	28	673.0060	28	673.0060	0	0.0000	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l5_p5_c5_g5_a4.pddl
+5	5	4	solved	8.0000	22	327.0060	22	327.0060	0	0.0000	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l4_p4_c4_g4_a4.pddl
 
 [SWEEP]
 drones	carriers	size	status	processing_time_s	first_plan_steps	first_makespan	last_plan_steps	last_makespan	wall_time_s	problem_file	error_excerpt
-1	1	2	unsolved	3.9923					3.9923	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l2_p2_c2_g2_a4.pddl	
-1	1	3	unsolved	4.4874					4.4874	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l3_p3_c3_g3_a4.pddl	
-2	2	2	unsolved	3.8581					3.8581	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l2_p2_c2_g2_a4.pddl	
-2	2	3	unsolved	3.8050					3.8050	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l3_p3_c3_g3_a4.pddl	
-3	3	2	unsolved	3.6895					3.6895	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l2_p2_c2_g2_a4.pddl	
-3	3	3	unsolved	4.0689					4.0689	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l3_p3_c3_g3_a4.pddl	
-4	4	2	unsolved	3.2119					3.2119	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l2_p2_c2_g2_a4.pddl	
-4	4	3	unsolved	3.4109					3.4109	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l3_p3_c3_g3_a4.pddl	
-5	5	2	unsolved	2.9416					2.9416	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l2_p2_c2_g2_a4.pddl	
-5	5	3	unsolved	3.2589					3.2589	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l3_p3_c3_g3_a4.pddl	
+1	1	2	solved	0.1300	7	617.0060	9	239.0080	1.1001	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l2_p2_c2_g2_a4.pddl	
+1	1	3	solved	0.8000	12	788.0110	14	322.0130	60.0452	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l3_p3_c3_g3_a4.pddl	
+1	1	4	solved	8.7700	15	654.0140	18	207.0170	60.0023	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l4_p4_c4_g4_a4.pddl	
+1	1	5	solved	55.3500	21	881.0200	25	698.0240	60.0036	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l5_p5_c5_g5_a4.pddl	
+1	1	6	solved	51.4400	23	2094.0220	26	1840.0250	60.0066	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l6_p6_c6_g6_a4.pddl	
+1	1	7	solved	43.5600	33	3717.0320	30	1722.0290	60.0180	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l7_p7_c7_g7_a4.pddl	
+1	1	8	solved	55.0000	35	2651.0340	33	1882.0320	60.0029	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l8_p8_c8_g8_a4.pddl	
+1	1	9	solved	3.6100	40	4568.0390	37	2639.0360	60.0061	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l9_p9_c9_g9_a4.pddl	
+1	1	10	solved	60.5700	48	4324.0470	42	2498.0410	60.0237	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l10_p10_c10_g10_a4.pddl	
+1	1	11	solved	43.3700	53	4170.0520	48	2848.0470	60.0208	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l11_p11_c11_g11_a4.pddl	
+1	1	12	solved	25.9100	49	3775.0480	52	3454.0510	60.0254	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l12_p12_c12_g12_a4.pddl	
+1	1	13	solved	46.5000	56	4348.0550	56	3750.0550	60.0530	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l13_p13_c13_g13_a4.pddl	
+1	1	14	solved	18.4100	57	4263.0560	55	4226.0540	60.0279	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l14_p14_c14_g14_a4.pddl	
+1	1	15	solved	20.3000	75	6969.0740	59	5077.0580	60.0028	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l15_p15_c15_g15_a4.pddl	
+1	1	16	solved	33.3600	74	6767.0730	66	4425.0650	60.0344	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l16_p16_c16_g16_a4.pddl	
+1	1	17	solved	40.1000	76	4480.0750	67	4296.0660	60.0151	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l17_p17_c17_g17_a4.pddl	
+1	1	18	solved	59.6000	88	7669.0870	73	5226.0720	60.0061	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l18_p18_c18_g18_a4.pddl	
+1	1	19	solved	61.2200	89	6880.0880	75	5173.0740	60.0032	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l19_p19_c19_g19_a4.pddl	
+1	1	20	solved	53.4900	94	8150.0930	79	6893.0780	60.0038	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d1_r1_l20_p20_c20_g20_a4.pddl	
+2	2	2	solved	0.0300	6	243.0030	6	243.0030	60.0452	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l2_p2_c2_g2_a4.pddl	
+2	2	3	solved	4.1300	12	491.0060	12	199.0020	60.0021	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l3_p3_c3_g3_a4.pddl	
+2	2	4	solved	36.4500	16	458.0070	17	310.0080	60.0031	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l4_p4_c4_g4_a4.pddl	
+2	2	5	solved	39.1900	21	773.0080	24	548.0060	60.0053	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l5_p5_c5_g5_a4.pddl	
+2	2	6	solved	0.5200	27	1243.0120	27	1243.0120	60.0472	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l6_p6_c6_g6_a4.pddl	
+2	2	7	solved	48.2200	31	978.0170	28	871.0120	60.0131	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l7_p7_c7_g7_a4.pddl	
+2	2	8	solved	2.3700	36	1904.0170	36	1904.0170	60.0130	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l8_p8_c8_g8_a4.pddl	
+2	2	9	solved	2.5800	46	1831.0270	46	1831.0270	60.0025	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l9_p9_c9_g9_a4.pddl	
+2	2	10	solved	6.1900	47	1925.0220	47	1925.0220	60.0098	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l10_p10_c10_g10_a4.pddl	
+2	2	11	solved	4.9400	49	1475.0200	49	1475.0200	60.0134	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l11_p11_c11_g11_a4.pddl	
+2	2	12	solved	10.6400	57	2673.0280	57	2673.0280	60.0082	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l12_p12_c12_g12_a4.pddl	
+2	2	13	solved	24.8300	69	2785.0350	69	2785.0350	60.0118	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l13_p13_c13_g13_a4.pddl	
+2	2	14	solved	50.0900	72	2337.0350	72	2337.0350	60.0074	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l14_p14_c14_g14_a4.pddl	
+2	2	15	solved	35.5600	71	3060.0360	71	3060.0360	60.0286	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l15_p15_c15_g15_a4.pddl	
+2	2	16	timeout						60.0141	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l16_p16_c16_g16_a4.pddl	
+2	2	17	timeout						60.0426	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d2_r2_l17_p17_c17_g17_a4.pddl	
+3	3	2	solved	0.0800	7	175.0020	7	175.0020	60.0196	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l2_p2_c2_g2_a4.pddl	
+3	3	3	solved	5.7600	13	781.0040	9	272.0030	60.0339	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l3_p3_c3_g3_a4.pddl	
+3	3	4	solved	35.4900	19	526.0070	17	507.0060	60.0189	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l4_p4_c4_g4_a4.pddl	
+3	3	5	solved	0.7300	25	991.0080	25	991.0080	60.0030	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l5_p5_c5_g5_a4.pddl	
+3	3	6	solved	2.5900	29	1115.0110	29	1115.0110	60.0352	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l6_p6_c6_g6_a4.pddl	
+3	3	7	solved	10.7000	36	834.0120	36	834.0120	60.0466	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l7_p7_c7_g7_a4.pddl	
+3	3	8	solved	47.2500	50	1263.0200	50	1263.0200	60.0147	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l8_p8_c8_g8_a4.pddl	
+3	3	9	solved	19.7000	42	1355.0150	42	1355.0150	60.0421	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l9_p9_c9_g9_a4.pddl	
+3	3	10	solved	46.6300	55	1773.0190	55	1773.0190	60.0148	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l10_p10_c10_g10_a4.pddl	
+3	3	11	timeout						60.0221	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l11_p11_c11_g11_a4.pddl	
+3	3	12	timeout						60.0159	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d3_r3_l12_p12_c12_g12_a4.pddl	
+4	4	2	solved	0.1200	8	138.0030	8	138.0030	60.0073	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l2_p2_c2_g2_a4.pddl	
+4	4	3	solved	6.7700	16	112.0040	10	49.0030	60.0059	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l3_p3_c3_g3_a4.pddl	
+4	4	4	solved	4.0700	22	762.0050	22	762.0050	60.0538	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l4_p4_c4_g4_a4.pddl	
+4	4	5	solved	27.7000	28	673.0060	28	673.0060	60.0284	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l5_p5_c5_g5_a4.pddl	
+4	4	6	timeout						60.0060	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l6_p6_c6_g6_a4.pddl	
+4	4	7	timeout						60.0153	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d4_r4_l7_p7_c7_g7_a4.pddl	
+5	5	2	solved	0.4500	9	151.0030	9	151.0030	60.0543	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l2_p2_c2_g2_a4.pddl	
+5	5	3	solved	1.1200	19	670.0040	19	670.0040	60.0403	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l3_p3_c3_g3_a4.pddl	
+5	5	4	solved	8.0000	22	327.0060	22	327.0060	60.0557	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l4_p4_c4_g4_a4.pddl	
+5	5	5	timeout						60.0310	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l5_p5_c5_g5_a4.pddl	
+5	5	6	timeout						60.0351	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3/results/problems/drone_problem_d5_r5_l6_p6_c6_g6_a4.pddl	
