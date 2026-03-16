@@ -1,0 +1,42 @@
+Benchmark FF - Practice 1 Part 2 Exercise 2.1
+Generated at: 2026-03-16T04:45:25
+Args: {'min_size': 2, 'max_size': 60, 'step': 2, 'sizes': None, 'timeout': 60, 'domain': 'dronedomain.pddl', 'generator': 'generate-problem.py', 'results_dir': 'results', 'drones': 1, 'carriers': 1, 'carrier_capacity': 4, 'exercise': 1, 'seed': None, 'csv_out': None, 'txt_out': None, 'md_out': None, 'png_out': None, 'allow_basic_plots': False, 'problem_files': None}
+
+[RAW_ROWS]
+size	status	solved	ff_time_s	wall_time_s	plan_steps	solver_backend	error_excerpt	problem_file
+2	solved	yes	0.01	2.8743	7	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl
+4	solved	yes	0.00	2.5299	16	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl
+6	solved	yes	0.02	3.1294	23	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl
+8	solved	yes	0.01	2.4911	31	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl
+10	solved	yes	0.01	1.5671	40	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl
+12	solved	yes	0.02	2.4142	51	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l12_p12_c12_g12_a4.pddl
+14	solved	yes	0.05	1.6588	58	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l14_p14_c14_g14_a4.pddl
+16	solved	yes	0.07	2.8280	65	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l16_p16_c16_g16_a4.pddl
+18	solved	yes	0.23	3.7625	81	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l18_p18_c18_g18_a4.pddl
+20	solved	yes	0.13	3.1506	82	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l20_p20_c20_g20_a4.pddl
+22	solved	yes	0.13	3.0686	87	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l22_p22_c22_g22_a4.pddl
+24	solved	yes	0.42	3.3436	98	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l24_p24_c24_g24_a4.pddl
+26	solved	yes	0.41	3.2670	112	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l26_p26_c26_g26_a4.pddl
+28	error	no		2.3612		planutils	ff: parsing domain file | __benchmark_domain__.pddl: syntax error in line 3, ':ACTION-COSTS': | domain definition expected	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l28_p28_c28_g28_a4.pddl
+30	error	no		2.1683		planutils	ff: parsing domain file | __benchmark_domain__.pddl: syntax error in line 3, ':ACTION-COSTS': | domain definition expected	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l30_p30_c30_g30_a4.pddl
+32	error	no		2.3670		planutils	ff: parsing domain file | __benchmark_domain__.pddl: syntax error in line 3, ':ACTION-COSTS': | domain definition expected	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l32_p32_c32_g32_a4.pddl
+34	error	no		2.1476		planutils	ff: parsing domain file | __benchmark_domain__.pddl: syntax error in line 3, ':ACTION-COSTS': | domain definition expected	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l34_p34_c34_g34_a4.pddl
+36	solved	yes	3.82	12.3053	153	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l36_p36_c36_g36_a4.pddl
+38	error	no		2.2789		planutils	ff: parsing domain file | __benchmark_domain__.pddl: syntax error in line 3, ':ACTION-COSTS': | domain definition expected	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l38_p38_c38_g38_a4.pddl
+40	error	no		2.5788		planutils	ff: parsing domain file | __benchmark_domain__.pddl: syntax error in line 3, ':ACTION-COSTS': | domain definition expected	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l40_p40_c40_g40_a4.pddl
+42	solved	yes	4.03	13.4735	178	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l42_p42_c42_g42_a4.pddl
+44	solved	yes	5.43	17.6721	186	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l44_p44_c44_g44_a4.pddl
+46	solved	yes	11.65	32.5500	198	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l46_p46_c46_g46_a4.pddl
+48	solved	yes	6.37	18.8730	203	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l48_p48_c48_g48_a4.pddl
+50	solved	yes	13.44	37.6753	215	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l50_p50_c50_g50_a4.pddl
+52	solved	yes	15.86	44.0042	227	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l52_p52_c52_g52_a4.pddl
+54	solved	yes	7.02	20.5484	227	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l54_p54_c54_g54_a4.pddl
+56	solved	yes	8.35	24.6553	225	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l56_p56_c56_g56_a4.pddl
+58	solved	yes	13.97	40.6358	246	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l58_p58_c58_g58_a4.pddl
+60	solved	yes	23.22	59.5383	250	planutils		/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte2/results/problems/drone_problem_ex1_d1_r1_l60_p60_c60_g60_a4.pddl
+
+[SUMMARY_THRESHOLD]
+threshold_s	60
+max_size_within_threshold	size=60, ff_time_s=23.22, plan_steps=250
+first_size_over_threshold	none
+status_counts	solved=24, timeout=0, unsolved=0, error=6
