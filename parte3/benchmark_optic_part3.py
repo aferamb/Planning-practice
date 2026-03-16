@@ -15,8 +15,10 @@ import csv
 import datetime as dt
 import re
 import shlex
+import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -42,10 +44,14 @@ UNSUPPORTED_RE = re.compile(
     r"(command not found|no such file or directory|invalid option|unknown option|module not found)",
     re.IGNORECASE,
 )
+# OPTIC prints the planning time as "; Time X.XXX" after each solution found.
+# We collect all such occurrences and take the last one (most recent solution).
 PROCESSING_PATTERNS = [
+    re.compile(r";\s*Time\s+([0-9]+(?:\.[0-9]+)?)"),           # OPTIC: ; Time 1.234
     re.compile(r"total\s+time\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),
     re.compile(r"cpu\s*time\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),
     re.compile(r"processing\s*time\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),
+    re.compile(r"b;\s*Total\s+time:\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),  # FD style
     re.compile(r"time\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)\s*(?:s|sec|seconds)", re.IGNORECASE),
 ]
 
@@ -182,7 +188,12 @@ def make_error_excerpt(text: str, max_lines: int = 6) -> str:
     return " | ".join(lines[:max_lines])[:500]
 
 
-def parse_processing_time(output: str, wall_time: float) -> float:
+def parse_processing_time(output: str) -> float | None:
+    """Extract the planner's self-reported planning time from its output.
+
+    Returns None if no timing information is found in the output, so the
+    caller can distinguish 'no timing data' from 'zero seconds'.
+    """
     for pattern in PROCESSING_PATTERNS:
         matches = pattern.findall(output)
         if matches:
@@ -190,7 +201,7 @@ def parse_processing_time(output: str, wall_time: float) -> float:
                 return float(matches[-1])
             except ValueError:
                 continue
-    return wall_time
+    return None
 
 
 def generator_supports_seed(generator_path: Path) -> bool:
@@ -303,6 +314,25 @@ def infer_status(code: int, output: str, timed_out: bool, groups: list[tuple[int
     return "error"
 
 
+def _is_optic_launcher_missing(code: int, out: str) -> bool:
+    """True only when the optic/planutils binary itself is not found."""
+    if code == 127:
+        return True
+    if "command not found" in out:
+        return True
+    # subprocess FileNotFoundError has the binary name (short, no slash) at end
+    if re.search(r"\[Errno 2\] No such file or directory: '[^/]", out):
+        return True
+    return False
+
+
+def _copy_to_tmp(src: Path, tmp_dir: str, name: str) -> Path:
+    """Copy src to tmp_dir/name and return the destination Path."""
+    dst = Path(tmp_dir) / name
+    shutil.copy2(src, dst)
+    return dst
+
+
 def optic_attempts(domain_file: Path, problem_file: Path) -> list[list[str]]:
     d = str(domain_file)
     p = str(problem_file)
@@ -328,64 +358,82 @@ def run_optic(
             except OSError:
                 pass
 
+    # The Apptainer container for OPTIC cannot access /mnt/c/... WSL paths.
+    # Copy domain and problem to a native Linux /tmp directory.
+    tmp_dir = tempfile.mkdtemp(prefix="optic_bench_")
+    eff_domain = _copy_to_tmp(domain_file, tmp_dir, domain_file.name)
+    eff_problem = _copy_to_tmp(problem_file, tmp_dir, problem_file.name)
+
     last_row: SweepRow | None = None
+    attempt_idx = 0
 
-    for cmd in optic_attempts(domain_file=domain_file, problem_file=problem_file):
-        code, out, timed_out, wall = run_command(cmd, cwd=run_dir, timeout_s=timeout_s)
+    try:
+        for cmd in optic_attempts(domain_file=eff_domain, problem_file=eff_problem):
+            attempt_idx += 1
+            # Run from the tmp dir so any output plan files land there
+            code, out, timed_out, wall = run_command(cmd, cwd=Path(tmp_dir), timeout_s=timeout_s)
 
-        groups = collect_anytime_solutions(out, run_dir)
-        status = infer_status(code, out, timed_out, groups)
-        processing = parse_processing_time(out, wall)
+            # Save log for debugging
+            log_file = run_dir / f"optic_attempt_{attempt_idx}.log"
+            try:
+                log_file.write_text(out, encoding="utf-8")
+            except OSError:
+                pass
 
-        if groups:
-            first_steps, first_makespan = groups[0]
-            last_steps, last_makespan = groups[-1]
-        else:
-            first_steps = None
-            first_makespan = None
-            last_steps = None
-            last_makespan = None
+            groups = collect_anytime_solutions(out, Path(tmp_dir))
+            status = infer_status(code, out, timed_out, groups)
+            processing = parse_processing_time(out)
 
-        row = SweepRow(
+            if groups:
+                first_steps, first_makespan = groups[0]
+                last_steps, last_makespan = groups[-1]
+            else:
+                first_steps = None
+                first_makespan = None
+                last_steps = None
+                last_makespan = None
+
+            row = SweepRow(
+                drones=-1,
+                carriers=-1,
+                size=size,
+                status=status,
+                processing_time_s=processing,
+                first_plan_steps=first_steps,
+                first_makespan=first_makespan,
+                last_plan_steps=last_steps,
+                last_makespan=last_makespan,
+                wall_time_s=wall,
+                problem_file=str(problem_file),
+                error_excerpt="" if status in {"solved", "unsolved", "timeout"} else make_error_excerpt(out),
+            )
+            last_row = row
+
+            if status in {"solved", "timeout", "unsolved", "unsupported"}:
+                return row
+
+            if not _is_optic_launcher_missing(code, out):
+                return row
+
+        if last_row is not None:
+            return last_row
+
+        return SweepRow(
             drones=-1,
             carriers=-1,
             size=size,
-            status=status,
-            processing_time_s=processing,
-            first_plan_steps=first_steps,
-            first_makespan=first_makespan,
-            last_plan_steps=last_steps,
-            last_makespan=last_makespan,
-            wall_time_s=wall,
+            status="unsupported",
+            processing_time_s=None,
+            first_plan_steps=None,
+            first_makespan=None,
+            last_plan_steps=None,
+            last_makespan=None,
+            wall_time_s=0.0,
             problem_file=str(problem_file),
-            error_excerpt="" if status in {"solved", "unsolved", "timeout"} else make_error_excerpt(out),
+            error_excerpt="optic backend not available",
         )
-        last_row = row
-
-        if status in {"solved", "timeout", "unsolved", "unsupported"}:
-            return row
-
-        launcher_missing = code == 127 or "No such file or directory" in out or "command not found" in out
-        if not launcher_missing:
-            return row
-
-    if last_row is not None:
-        return last_row
-
-    return SweepRow(
-        drones=-1,
-        carriers=-1,
-        size=size,
-        status="unsupported",
-        processing_time_s=None,
-        first_plan_steps=None,
-        first_makespan=None,
-        last_plan_steps=None,
-        last_makespan=None,
-        wall_time_s=0.0,
-        problem_file=str(problem_file),
-        error_excerpt="optic backend not available",
-    )
+    finally:
+        shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
 def run_sweep_for_drones(

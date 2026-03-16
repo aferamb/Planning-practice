@@ -68,11 +68,22 @@ USAGE_RE = re.compile(r"(^|\n)\s*usage:\s", re.IGNORECASE)
 
 ERROR_EXCERPT_MD_MAX_LEN = 120
 
+# Patterns to extract the planner's own reported time from its stdout.
+# This is the actual search/planning time, excluding container startup overhead.
+PLANNER_TIME_PATTERNS = [
+    re.compile(r"(\d+\.\d+)\s+seconds\s+total\s+time", re.IGNORECASE),       # metric-ff
+    re.compile(r"Total\s+time:\s*([0-9]+(?:\.[0-9]+)?)s", re.IGNORECASE),    # Fast Downward
+    re.compile(r"Planner\s+time:\s*([0-9]+(?:\.[0-9]+)?)s", re.IGNORECASE),  # FD wrapper
+    re.compile(r"search\s+time:\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),    # FD search
+    re.compile(r"total\s+time\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),
+]
+
 RAW_HEADERS = [
     "planner",
     "family",
     "status",
     "size",
+    "planner_time_s",
     "wall_time_s",
     "plan_cost",
     "plan_length",
@@ -109,6 +120,7 @@ class RunRow:
     plan_length: int | None
     error_excerpt: str
     problem_file: str
+    planner_time_s: float | None = None  # planner's own reported time (excludes container startup)
 
 
 PLANNERS: list[PlannerSpec] = [
@@ -256,6 +268,24 @@ def parse_plan_length(output: str) -> int | None:
     ff_steps = FF_STEP_RE.findall(output)
     if ff_steps:
         return len(ff_steps)
+    return None
+
+
+def parse_planner_time(output: str) -> float | None:
+    """Extract the planner's own reported runtime from its stdout.
+
+    This is the actual search time as reported by the planner, *not* the
+    total wall-clock time of the subprocess (which includes container
+    startup, Python overhead, etc.).
+    Returns None if no timing line is found.
+    """
+    for pattern in PLANNER_TIME_PATTERNS:
+        matches = pattern.findall(output)
+        if matches:
+            try:
+                return float(matches[-1])
+            except ValueError:
+                continue
     return None
 
 
@@ -470,6 +500,7 @@ def run_planner_once(
 
             plan_cost = parse_plan_cost(out)
             plan_length = parse_plan_length(out)
+            planner_time = parse_planner_time(out)
             if spec.tool == "downward":
                 # Copy plan file back from tmp to the artifacts dir if it exists
                 if eff_plan_file.exists() and eff_plan_file != plan_file:
@@ -497,6 +528,7 @@ def run_planner_once(
                 plan_length=plan_length,
                 error_excerpt=make_error_excerpt(out) if keep_excerpt else "",
                 problem_file=str(problem_file),
+                planner_time_s=planner_time,
             )
             last_row = row
 
@@ -702,6 +734,7 @@ def run_row_values(row: RunRow) -> list[str]:
         row.family,
         row.status,
         str(row.size),
+        "" if row.planner_time_s is None else f"{row.planner_time_s:.4f}",
         f"{row.wall_time_s:.4f}",
         "" if row.plan_cost is None else f"{row.plan_cost:.4f}",
         "" if row.plan_length is None else str(row.plan_length),
@@ -1109,12 +1142,13 @@ def make_plots(results_dir: Path, summary_rows: list[list[str]], all_rows: list[
         solved_rows = [
             r
             for r in all_rows
-            if r.planner == spec.planner_id and r.status == "solved" and r.plan_cost is not None and r.wall_time_s > 0
+            if r.planner == spec.planner_id and r.status == "solved" and r.plan_cost is not None
         ]
         if not solved_rows:
             continue
         xs = [r.plan_cost for r in solved_rows if r.plan_cost is not None]
-        ys = [r.wall_time_s for r in solved_rows]
+        # Use planner-reported time when available; fall back to wall_time_s
+        ys = [r.planner_time_s if r.planner_time_s is not None else r.wall_time_s for r in solved_rows]
         sizes = [32 + (r.size * 3) for r in solved_rows]
         plt.scatter(
             xs,
@@ -1129,7 +1163,7 @@ def make_plots(results_dir: Path, summary_rows: list[list[str]], all_rows: list[
 
     plt.title("2.2 - Time vs cost (solved runs)")
     plt.xlabel("Plan cost")
-    plt.ylabel("Wall time (s)")
+    plt.ylabel("Planning time (s)")
     plt.grid(True, alpha=0.3)
     family_handles = [
         Line2D([0], [0], marker="o", linestyle="", color="black", label="satisficing", markersize=7),
