@@ -66,9 +66,9 @@ Main behavior:
 cd parte1
 python3 benchmark_ff_graph.py \
   --min-size 2 \
-  --max-size 60 \
+  --max-size 50 \
   --step 1 \
-  --timeout 60 \
+  --timeout 70 \
   --domain dronedomain.pddl \
   --generator generate-problem.py \
   --results-dir results
