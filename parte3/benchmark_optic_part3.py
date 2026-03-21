@@ -94,11 +94,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-drones", type=int, default=5, help="maximum drones")
 
     parser.add_argument("--min-size", type=int, default=2, help="minimum size for l=p=c=g")
-    parser.add_argument("--max-size", type=int, default=20, help="maximum size for l=p=c=g")
+    parser.add_argument("--max-size", type=int, default=40, help="maximum size for l=p=c=g")
     parser.add_argument("--step", type=int, default=1, help="size increment")
 
     parser.add_argument("--timeout", type=int, default=60, help="timeout per run in seconds")
-    parser.add_argument("--stop-after-fails", type=int, default=2, help="stop after N consecutive non-solved runs")
+    parser.add_argument("--stop-after-fails", type=int, default=3, help="stop after N consecutive non-solved runs")
 
     parser.add_argument("--domain", default="dronedomain.pddl", help="temporal domain path")
     parser.add_argument("--generator", default="generate-problem.py", help="problem generator path")
