@@ -244,6 +244,7 @@ def resolve_aliases(base_cmd: list[str]) -> tuple[dict[str, str | None], dict[st
         "EHC": ["ehc", "ehs"],
     }
     heuristic_candidates = {
+        "BLIND": ["blind"],
         "HMAX": ["hmax"],
         "HADD": ["hadd"],
         "HFF": ["hff"],
@@ -593,6 +594,8 @@ def run_section_133(
         ("IDS", "IDS", "", "yes"),
         ("A*+hMAX", "ASTAR", "HMAX", "yes"),
         ("A*+lmcut", "ASTAR", "LMCUT", "yes"),
+        ("A*+blind", "ASTAR", "BLIND", "yes"),
+        ("A*+landmark", "ASTAR", "LANDMARK", "yes"),
     ]
 
     for algorithm, search_key, heuristic_key, optimal in configs:

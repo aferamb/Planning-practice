@@ -1,5 +1,5 @@
 Benchmark pyperplan - Practice 1 Part 1 Exercise 1.3
-Generated at: 2026-03-16T02:41:09
+Generated at: 2026-03-22T04:18:07
 Args: {'min_size': 2, 'max_size': 10, 'step': 1, 'timeout': 80, 'domain': 'dronedomain.pddl', 'generator': 'generate-problem.py', 'results_dir': 'results', 'allow_basic_plots': False, 'problem_files': None}
 
 [ALIASES]
@@ -8,6 +8,7 @@ search.IDS	ids
 search.ASTAR	astar
 search.GBFS	gbf
 search.EHC	ehs
+heuristic.BLIND	blind
 heuristic.HMAX	hmax
 heuristic.HADD	hadd
 heuristic.HFF	hff
@@ -16,148 +17,154 @@ heuristic.LMCUT	lmcut
 
 [GENERATION]
 size	problem_file	status	wall_time_s	error_excerpt
-2	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	ok	0.1594	
-3	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	ok	0.1300	
-4	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	ok	0.1287	
-5	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	ok	0.1793	
-6	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	ok	0.1839	
-7	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	ok	0.1544	
-8	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	ok	0.2655	
-9	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	ok	0.1325	
-10	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	ok	0.1724	
+2	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	ok	0.0440	
+3	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	ok	0.0466	
+4	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	ok	0.0603	
+5	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	ok	0.0500	
+6	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	ok	0.0464	
+7	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	ok	0.0456	
+8	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	ok	0.0493	
+9	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	ok	0.0452	
+10	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	ok	0.0472	
 
 [RAW_ROWS]
 section	algorithm	search	heuristic	size	status	solved	search_time_s	wall_time_s	plan_length	optimal	problem_file	error_excerpt
-1.3.1	BFS	bfs		2	solved	yes	0.0007	2.0212	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	IDS	ids		2	solved	yes	0.0014	2.1636	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	2	solved	yes	0.0038	2.3835	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	2	solved	yes	0.0014	1.9310	6	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	BFS	bfs		3	solved	yes	0.0087	2.0516	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	IDS	ids		3	solved	yes	0.5500	3.0325	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	3	solved	yes	0.1300	2.6435	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	3	solved	yes	0.0140	2.1928	10	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	BFS	bfs		4	solved	yes	0.0820	2.1135	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	IDS	ids		4	timeout	no		80.0986		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	4	solved	yes	1.1000	3.7449	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	4	solved	yes	0.1600	2.4445	14	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	BFS	bfs		5	solved	yes	0.7200	3.3724	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	IDS	ids		5	timeout	no		80.0970		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	5	solved	yes	1.3000	22.7399	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	5	solved	yes	0.3100	2.5139	19	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	BFS	bfs		6	solved	yes	4.9000	9.6629	19	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	IDS	ids		6	timeout	no		80.0847		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	6	timeout	no		80.0976		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	6	solved	yes	2.4000	5.7029	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	BFS	bfs		7	solved	yes	3.9000	66.7620	23	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	IDS	ids		7	timeout	no		80.0831		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	7	timeout	no		80.1051		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	7	solved	yes	2.9000	51.6372	26	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	BFS	bfs		8	timeout	no		80.1090		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	IDS	ids		8	timeout	no		80.0844		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	8	timeout	no		80.0902		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	8	timeout	no		80.0974		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	BFS	bfs		9	timeout	no		80.0992		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	IDS	ids		9	timeout	no		80.1272		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	9	timeout	no		80.0927		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	9	timeout	no		80.0940		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	BFS	bfs		10	timeout	no		80.1076		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.1	IDS	ids		10	timeout	no		80.1053		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	10	timeout	no		80.0949		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	10	timeout	no		80.0942		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.2	GBFS	gbf	hmax	7	solved	yes	2.9000	64.0971	26	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	GBFS	gbf	hadd	7	solved	yes	0.1300	3.6991	27	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	GBFS	gbf	hff	7	solved	yes	0.2100	3.2099	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	GBFS	gbf	landmark	7	solved	yes	0.0220	2.8640	28	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	hmax	7	timeout	no		80.0943		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	hadd	7	solved	yes	0.4400	4.0822	27	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	hff	7	solved	yes	0.1600	3.6990	25	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	landmark	7	solved	yes	0.1200	2.9761	34	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.3	BFS	bfs		5	solved	yes	0.7300	4.5104	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.3	IDS	ids		5	timeout	no		80.1010		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.3	A*+hMAX	astar	hmax	5	solved	yes	1.4000	34.0961	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.3	A*+lmcut	astar	lmcut	5	timeout	no		80.1165		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	BFS	bfs		2	solved	yes	0.0005	1.6679	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	IDS	ids		2	solved	yes	0.0008	1.5613	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	2	solved	yes	0.0027	1.5918	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	2	solved	yes	0.0009	1.6376	6	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	BFS	bfs		3	solved	yes	0.0032	1.6026	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	IDS	ids		3	solved	yes	0.2800	1.9072	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	3	solved	yes	0.0320	1.6384	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	3	solved	yes	0.0070	1.5969	11	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	BFS	bfs		4	solved	yes	0.0360	1.6208	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	IDS	ids		4	timeout	no		80.0727		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	4	solved	yes	0.4900	1.7813	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	4	solved	yes	0.0820	1.3515	14	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	BFS	bfs		5	solved	yes	0.3700	1.6420	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	IDS	ids		5	timeout	no		80.2975		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	5	solved	yes	6.1000	7.8937	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	5	solved	yes	1.2000	2.6432	18	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	BFS	bfs		6	solved	yes	2.4000	3.8811	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	IDS	ids		6	timeout	no		80.1336		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	6	solved	yes	6.7000	74.2042	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	6	solved	yes	2.7000	4.4533	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	BFS	bfs		7	solved	yes	2.4000	27.3417	23	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	IDS	ids		7	timeout	no		80.0740		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	7	timeout	no		80.0760		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	7	timeout	no		80.0841		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	BFS	bfs		8	timeout	no		80.0475		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	IDS	ids		8	timeout	no		80.0736		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	8	timeout	no		80.0764		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	8	timeout	no		80.0989		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	BFS	bfs		9	timeout	no		80.1094		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	IDS	ids		9	timeout	no		80.1000		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	9	timeout	no		80.0955		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	9	timeout	no		80.1017		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	BFS	bfs		10	timeout	no		80.0913		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	IDS	ids		10	timeout	no		80.1032		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	10	timeout	no		80.1418		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	10	timeout	no		80.0958		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.2	GBFS	gbf	hmax	6	solved	yes	4.8000	13.1334	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	GBFS	gbf	hadd	6	solved	yes	0.1100	3.2471	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	GBFS	gbf	hff	6	solved	yes	0.1100	2.9650	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	GBFS	gbf	landmark	6	solved	yes	0.0097	2.6853	24	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	hmax	6	timeout	no		80.0982		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	hadd	6	solved	yes	0.0980	2.5838	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	hff	6	solved	yes	0.1700	2.6601	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	landmark	6	solved	yes	0.0350	2.5119	27	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	BFS	bfs		6	solved	yes	5.3000	15.1212	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	IDS	ids		6	timeout	no		80.1110		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+hMAX	astar	hmax	6	timeout	no		80.0973		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+lmcut	astar	lmcut	6	timeout	no		80.1082		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+blind	astar	blind	6	solved	yes	8.1000	26.4468	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+landmark	astar	landmark	6	solved	yes	6.6000	22.3195	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
 
 [TABLE_1.3.1_ALL_RUNS]
 section	algorithm	search	heuristic	size	status	solved	search_time_s	wall_time_s	plan_length	optimal	problem_file	error_excerpt
-1.3.1	BFS	bfs		2	solved	yes	0.0007	2.0212	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	IDS	ids		2	solved	yes	0.0014	2.1636	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	2	solved	yes	0.0038	2.3835	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	2	solved	yes	0.0014	1.9310	6	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
-1.3.1	BFS	bfs		3	solved	yes	0.0087	2.0516	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	IDS	ids		3	solved	yes	0.5500	3.0325	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	3	solved	yes	0.1300	2.6435	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	3	solved	yes	0.0140	2.1928	10	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
-1.3.1	BFS	bfs		4	solved	yes	0.0820	2.1135	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	IDS	ids		4	timeout	no		80.0986		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	4	solved	yes	1.1000	3.7449	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	4	solved	yes	0.1600	2.4445	14	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
-1.3.1	BFS	bfs		5	solved	yes	0.7200	3.3724	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	IDS	ids		5	timeout	no		80.0970		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	5	solved	yes	1.3000	22.7399	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	5	solved	yes	0.3100	2.5139	19	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.1	BFS	bfs		6	solved	yes	4.9000	9.6629	19	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	IDS	ids		6	timeout	no		80.0847		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	6	timeout	no		80.0976		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	6	solved	yes	2.4000	5.7029	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
-1.3.1	BFS	bfs		7	solved	yes	3.9000	66.7620	23	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	IDS	ids		7	timeout	no		80.0831		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	7	timeout	no		80.1051		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	7	solved	yes	2.9000	51.6372	26	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.1	BFS	bfs		8	timeout	no		80.1090		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	IDS	ids		8	timeout	no		80.0844		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	8	timeout	no		80.0902		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	8	timeout	no		80.0974		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
-1.3.1	BFS	bfs		9	timeout	no		80.0992		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	IDS	ids		9	timeout	no		80.1272		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	9	timeout	no		80.0927		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	9	timeout	no		80.0940		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
-1.3.1	BFS	bfs		10	timeout	no		80.1076		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.1	IDS	ids		10	timeout	no		80.1053		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.1	A*+hMAX	astar	hmax	10	timeout	no		80.0949		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
-1.3.1	GBFS+hMAX	gbf	hmax	10	timeout	no		80.0942		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	BFS	bfs		2	solved	yes	0.0005	1.6679	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	IDS	ids		2	solved	yes	0.0008	1.5613	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	2	solved	yes	0.0027	1.5918	6	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	2	solved	yes	0.0009	1.6376	6	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l2_p2_c2_g2_ct2.pddl	
+1.3.1	BFS	bfs		3	solved	yes	0.0032	1.6026	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	IDS	ids		3	solved	yes	0.2800	1.9072	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	3	solved	yes	0.0320	1.6384	10	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	3	solved	yes	0.0070	1.5969	11	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l3_p3_c3_g3_ct2.pddl	
+1.3.1	BFS	bfs		4	solved	yes	0.0360	1.6208	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	IDS	ids		4	timeout	no		80.0727		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	4	solved	yes	0.4900	1.7813	13	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	4	solved	yes	0.0820	1.3515	14	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l4_p4_c4_g4_ct2.pddl	
+1.3.1	BFS	bfs		5	solved	yes	0.3700	1.6420	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	IDS	ids		5	timeout	no		80.2975		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	5	solved	yes	6.1000	7.8937	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	5	solved	yes	1.2000	2.6432	18	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.1	BFS	bfs		6	solved	yes	2.4000	3.8811	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	IDS	ids		6	timeout	no		80.1336		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	6	solved	yes	6.7000	74.2042	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	6	solved	yes	2.7000	4.4533	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.1	BFS	bfs		7	solved	yes	2.4000	27.3417	23	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	IDS	ids		7	timeout	no		80.0740		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	7	timeout	no		80.0760		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	7	timeout	no		80.0841		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.1	BFS	bfs		8	timeout	no		80.0475		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	IDS	ids		8	timeout	no		80.0736		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	8	timeout	no		80.0764		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	8	timeout	no		80.0989		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l8_p8_c8_g8_ct2.pddl	
+1.3.1	BFS	bfs		9	timeout	no		80.1094		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	IDS	ids		9	timeout	no		80.1000		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	9	timeout	no		80.0955		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	9	timeout	no		80.1017		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l9_p9_c9_g9_ct2.pddl	
+1.3.1	BFS	bfs		10	timeout	no		80.0913		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	IDS	ids		10	timeout	no		80.1032		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	A*+hMAX	astar	hmax	10	timeout	no		80.1418		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
+1.3.1	GBFS+hMAX	gbf	hmax	10	timeout	no		80.0958		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l10_p10_c10_g10_ct2.pddl	
 
 [TABLE_1.3.2_ALL_RUNS]
 section	algorithm	search	heuristic	size	status	solved	search_time_s	wall_time_s	plan_length	optimal	problem_file	error_excerpt
-1.3.2	GBFS	gbf	hmax	7	solved	yes	2.9000	64.0971	26	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	GBFS	gbf	hadd	7	solved	yes	0.1300	3.6991	27	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	GBFS	gbf	hff	7	solved	yes	0.2100	3.2099	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	GBFS	gbf	landmark	7	solved	yes	0.0220	2.8640	28	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	hmax	7	timeout	no		80.0943		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	hadd	7	solved	yes	0.4400	4.0822	27	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	hff	7	solved	yes	0.1600	3.6990	25	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
-1.3.2	EHC	ehs	landmark	7	solved	yes	0.1200	2.9761	34	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l7_p7_c7_g7_ct2.pddl	
+1.3.2	GBFS	gbf	hmax	6	solved	yes	4.8000	13.1334	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	GBFS	gbf	hadd	6	solved	yes	0.1100	3.2471	23	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	GBFS	gbf	hff	6	solved	yes	0.1100	2.9650	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	GBFS	gbf	landmark	6	solved	yes	0.0097	2.6853	24	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	hmax	6	timeout	no		80.0982		no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	hadd	6	solved	yes	0.0980	2.5838	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	hff	6	solved	yes	0.1700	2.6601	22	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.2	EHC	ehs	landmark	6	solved	yes	0.0350	2.5119	27	no	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
 
 [TABLE_1.3.3_ALL_RUNS]
 section	algorithm	search	heuristic	size	status	solved	search_time_s	wall_time_s	plan_length	optimal	problem_file	error_excerpt
-1.3.3	BFS	bfs		5	solved	yes	0.7300	4.5104	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.3	IDS	ids		5	timeout	no		80.1010		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.3	A*+hMAX	astar	hmax	5	solved	yes	1.4000	34.0961	16	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
-1.3.3	A*+lmcut	astar	lmcut	5	timeout	no		80.1165		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l5_p5_c5_g5_ct2.pddl	
+1.3.3	BFS	bfs		6	solved	yes	5.3000	15.1212	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	IDS	ids		6	timeout	no		80.1110		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+hMAX	astar	hmax	6	timeout	no		80.0973		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+lmcut	astar	lmcut	6	timeout	no		80.1082		yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+blind	astar	blind	6	solved	yes	8.1000	26.4468	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
+1.3.3	A*+landmark	astar	landmark	6	solved	yes	6.6000	22.3195	18	yes	/mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte1/results/problems/drone_problem_d1_r0_l6_p6_c6_g6_ct2.pddl	
 
 [SUMMARY_1.3.1]
 algorithm	max_solved_size	time_s	plan_length	optimal
-BFS	7	3.9000	23	yes
-IDS	3	0.5500	10	yes
-A*+hMAX	5	1.3000	16	yes
-GBFS+hMAX	7	2.9000	26	no
+BFS	7	2.4000	23	yes
+IDS	3	0.2800	10	yes
+A*+hMAX	6	6.7000	18	yes
+GBFS+hMAX	6	2.7000	23	no
 
 [SUMMARY_1.3.2]
 combo	status	time_s	plan_length	size
-GBFS/hmax	solved	2.9000	26	7
-GBFS/hadd	solved	0.1300	27	7
-GBFS/hff	solved	0.2100	23	7
-GBFS/landmark	solved	0.0220	28	7
-EHC/hmax	timeout			7
-EHC/hadd	solved	0.4400	27	7
-EHC/hff	solved	0.1600	25	7
-EHC/landmark	solved	0.1200	34	7
+GBFS/hmax	solved	4.8000	23	6
+GBFS/hadd	solved	0.1100	23	6
+GBFS/hff	solved	0.1100	22	6
+GBFS/landmark	solved	0.0097	24	6
+EHC/hmax	timeout			6
+EHC/hadd	solved	0.0980	22	6
+EHC/hff	solved	0.1700	22	6
+EHC/landmark	solved	0.0350	27	6
 
 [SUMMARY_1.3.3]
 combo	status	time_s	plan_length	size	optimal
-BFS/-	solved	0.7300	16	5	yes
-IDS/-	timeout			5	yes
-A*+hMAX/hmax	solved	1.4000	16	5	yes
-A*+lmcut/lmcut	timeout			5	yes
+BFS/-	solved	5.3000	18	6	yes
+IDS/-	timeout			6	yes
+A*+hMAX/hmax	timeout			6	yes
+A*+lmcut/lmcut	timeout			6	yes
+A*+blind/blind	solved	8.1000	18	6	yes
+A*+landmark/landmark	solved	6.6000	18	6	yes
 
 [BEST_OPTIMAL_1.3.3]
-BFS/-	0.7300s	plan_length=16
+BFS/-	5.3000s	plan_length=18

@@ -1,7 +1,7 @@
 # Benchmark pyperplan - Practice 1 Part 2 Exercise 2.1
 
-- Generated at: `2026-03-16T04:43:37`
-- Args: `{'min_size': 2, 'max_size': 10, 'step': 2, 'timeout': 60, 'domain': 'dronedomain.pddl', 'generator': 'generate-problem.py', 'results_dir': 'results', 'drones': 1, 'carriers': 1, 'carrier_capacity': 4, 'exercise': 1, 'seed': None, 'allow_basic_plots': False, 'problem_files': None}`
+- Generated at: `2026-03-22T04:19:34`
+- Args: `{'min_size': 2, 'max_size': 10, 'step': 1, 'timeout': 70, 'domain': 'dronedomain.pddl', 'generator': 'generate-problem.py', 'results_dir': 'results', 'drones': 1, 'carriers': 1, 'carrier_capacity': 4, 'exercise': 1, 'seed': None, 'allow_basic_plots': False, 'problem_files': None}`
 
 ## [ALIASES]
 
@@ -12,6 +12,7 @@
 | search.ASTAR | astar |
 | search.GBFS | gbf |
 | search.EHC | ehs |
+| heuristic.BLIND | blind |
 | heuristic.HMAX | hmax |
 | heuristic.HADD | hadd |
 | heuristic.HFF | hff |
@@ -22,127 +23,169 @@
 
 | size | problem_file | status | wall_time_s | error_excerpt |
 | --- | --- | --- | --- | --- |
-| 2 | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl | ok | 0.1713 |  |
-| 4 | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl | ok | 0.1619 |  |
-| 6 | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl | ok | 0.1794 |  |
-| 8 | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl | ok | 0.2361 |  |
-| 10 | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl | ok | 0.1394 |  |
+| 2 | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl | ok | 0.0429 |  |
+| 3 | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl | ok | 0.0450 |  |
+| 4 | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl | ok | 0.0455 |  |
+| 5 | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl | ok | 0.0465 |  |
+| 6 | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl | ok | 0.0438 |  |
+| 7 | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl | ok | 0.0449 |  |
+| 8 | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl | ok | 0.0466 |  |
+| 9 | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl | ok | 0.0457 |  |
+| 10 | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl | ok | 0.0451 |  |
 
 ## [RAW_ROWS]
 
 | section | algorithm | search | heuristic | size | status | solved | search_time_s | wall_time_s | plan_length | optimal | problem_file | error_excerpt |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2.1.1 | BFS | bfs |  | 2 | solved | yes | 0.0021 | 2.8863 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 2 | solved | yes | 0.0056 | 2.5916 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 2 | solved | yes | 0.0280 | 3.1249 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 2 | solved | yes | 0.0220 | 2.8880 | 7 | no | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 4 | solved | yes | 0.8500 | 4.5368 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 4 | timeout | no |  | 60.0758 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 4 | solved | yes | 2.2000 | 46.7299 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 4 | solved | yes | 2.9000 | 10.0656 | 18 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 6 | timeout | no |  | 60.0704 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 6 | timeout | no |  | 60.0938 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 6 | timeout | no |  | 60.0740 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 6 | timeout | no |  | 60.0897 |  | no | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 8 | timeout | no |  | 60.2388 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 8 | timeout | no |  | 60.0968 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 8 | timeout | no |  | 60.0619 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 8 | timeout | no |  | 60.0854 |  | no | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 10 | timeout | no |  | 60.0787 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 10 | timeout | no |  | 60.0818 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 10 | timeout | no |  | 60.1043 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 10 | timeout | no |  | 60.0675 |  | no | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | hmax | 4 | solved | yes | 2.7000 | 10.6595 | 18 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | hadd | 4 | solved | yes | 0.0600 | 3.7483 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | hff | 4 | solved | yes | 0.0540 | 3.6123 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | landmark | 4 | solved | yes | 0.0056 | 3.5641 | 17 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | hmax | 4 | solved | yes | 1.7000 | 48.3078 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | hadd | 4 | solved | yes | 0.1400 | 3.9511 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | hff | 4 | solved | yes | 0.1000 | 3.6007 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | landmark | 4 | solved | yes | 0.0066 | 3.0821 | 18 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | BFS | bfs |  | 4 | solved | yes | 0.9800 | 5.5718 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | IDS | ids |  | 4 | timeout | no |  | 60.1030 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | A*+hMAX | astar | hmax | 4 | timeout | no |  | 60.0763 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | A*+lmcut | astar | lmcut | 4 | timeout | no |  | 60.0834 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 2 | solved | yes | 0.0012 | 1.2079 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 2 | solved | yes | 0.0029 | 1.1775 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 2 | solved | yes | 0.0094 | 1.2520 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 2 | solved | yes | 0.0092 | 1.1794 | 7 | no | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 3 | solved | yes | 0.0210 | 1.1882 | 11 | yes | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 3 | solved | yes | 1.9000 | 3.2261 | 11 | yes | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 3 | solved | yes | 0.3400 | 1.5621 | 11 | yes | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 3 | solved | yes | 0.0930 | 1.3108 | 14 | no | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 4 | solved | yes | 0.3800 | 1.5966 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 4 | timeout | no |  | 70.0798 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 4 | solved | yes | 9.9000 | 11.9898 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 4 | solved | yes | 1.0000 | 2.4010 | 19 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 5 | solved | yes | 5.0000 | 6.6873 | 19 | yes | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 5 | timeout | no |  | 70.2172 |  | yes | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 5 | timeout | no |  | 70.0675 |  | yes | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 5 | solved | yes | 1.7000 | 20.2499 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 6 | timeout | no |  | 70.5392 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 6 | timeout | no |  | 70.0837 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 6 | timeout | no |  | 70.1028 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 6 | timeout | no |  | 70.0689 |  | no | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 7 | timeout | no |  | 70.0697 |  | yes | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 7 | timeout | no |  | 70.0673 |  | yes | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 7 | timeout | no |  | 70.0825 |  | yes | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 7 | timeout | no |  | 70.1324 |  | no | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 8 | timeout | no |  | 70.0874 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 8 | timeout | no |  | 70.0780 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 8 | timeout | no |  | 70.0794 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 8 | timeout | no |  | 70.0914 |  | no | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 9 | timeout | no |  | 70.0777 |  | yes | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 9 | timeout | no |  | 70.0894 |  | yes | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 9 | timeout | no |  | 70.2025 |  | yes | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 9 | timeout | no |  | 70.1527 |  | no | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 10 | timeout | no |  | 70.1187 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 10 | timeout | no |  | 70.1271 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 10 | timeout | no |  | 70.1260 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 10 | timeout | no |  | 70.1103 |  | no | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | hmax | 5 | solved | yes | 2.7000 | 66.2752 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | hadd | 5 | solved | yes | 0.1100 | 3.0880 | 19 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | hff | 5 | solved | yes | 0.1100 | 3.6667 | 19 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | landmark | 5 | solved | yes | 0.0230 | 2.6053 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | hmax | 5 | timeout | no |  | 70.1108 |  | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | hadd | 5 | solved | yes | 0.1400 | 3.4083 | 21 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | hff | 5 | solved | yes | 0.1800 | 3.0836 | 19 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | landmark | 5 | solved | yes | 0.0250 | 2.7823 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.3 | BFS | bfs |  | 4 | solved | yes | 0.8200 | 4.5261 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | IDS | ids |  | 4 | timeout | no |  | 70.1126 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+hMAX | astar | hmax | 4 | solved | yes | 2.2000 | 63.0585 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+lmcut | astar | lmcut | 4 | timeout | no |  | 70.1412 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+blind | astar | blind | 4 | solved | yes | 1.2000 | 9.7848 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+landmark | astar | landmark | 4 | solved | yes | 1.4000 | 7.5133 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
 
 ## [TABLE_2.1.1_ALL_RUNS]
 
 | section | algorithm | search | heuristic | size | status | solved | search_time_s | wall_time_s | plan_length | optimal | problem_file | error_excerpt |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2.1.1 | BFS | bfs |  | 2 | solved | yes | 0.0021 | 2.8863 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 2 | solved | yes | 0.0056 | 2.5916 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 2 | solved | yes | 0.0280 | 3.1249 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 2 | solved | yes | 0.0220 | 2.8880 | 7 | no | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 4 | solved | yes | 0.8500 | 4.5368 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 4 | timeout | no |  | 60.0758 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 4 | solved | yes | 2.2000 | 46.7299 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 4 | solved | yes | 2.9000 | 10.0656 | 18 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 6 | timeout | no |  | 60.0704 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 6 | timeout | no |  | 60.0938 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 6 | timeout | no |  | 60.0740 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 6 | timeout | no |  | 60.0897 |  | no | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 8 | timeout | no |  | 60.2388 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 8 | timeout | no |  | 60.0968 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 8 | timeout | no |  | 60.0619 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 8 | timeout | no |  | 60.0854 |  | no | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
-| 2.1.1 | BFS | bfs |  | 10 | timeout | no |  | 60.0787 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.1 | IDS | ids |  | 10 | timeout | no |  | 60.0818 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.1 | A*+hMAX | astar | hmax | 10 | timeout | no |  | 60.1043 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
-| 2.1.1 | GBFS+hMAX | gbf | hmax | 10 | timeout | no |  | 60.0675 |  | no | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 2 | solved | yes | 0.0012 | 1.2079 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 2 | solved | yes | 0.0029 | 1.1775 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 2 | solved | yes | 0.0094 | 1.2520 | 7 | yes | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 2 | solved | yes | 0.0092 | 1.1794 | 7 | no | problems/drone_problem_ex1_d1_r1_l2_p2_c2_g2_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 3 | solved | yes | 0.0210 | 1.1882 | 11 | yes | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 3 | solved | yes | 1.9000 | 3.2261 | 11 | yes | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 3 | solved | yes | 0.3400 | 1.5621 | 11 | yes | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 3 | solved | yes | 0.0930 | 1.3108 | 14 | no | problems/drone_problem_ex1_d1_r1_l3_p3_c3_g3_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 4 | solved | yes | 0.3800 | 1.5966 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 4 | timeout | no |  | 70.0798 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 4 | solved | yes | 9.9000 | 11.9898 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 4 | solved | yes | 1.0000 | 2.4010 | 19 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 5 | solved | yes | 5.0000 | 6.6873 | 19 | yes | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 5 | timeout | no |  | 70.2172 |  | yes | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 5 | timeout | no |  | 70.0675 |  | yes | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 5 | solved | yes | 1.7000 | 20.2499 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 6 | timeout | no |  | 70.5392 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 6 | timeout | no |  | 70.0837 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 6 | timeout | no |  | 70.1028 |  | yes | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 6 | timeout | no |  | 70.0689 |  | no | problems/drone_problem_ex1_d1_r1_l6_p6_c6_g6_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 7 | timeout | no |  | 70.0697 |  | yes | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 7 | timeout | no |  | 70.0673 |  | yes | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 7 | timeout | no |  | 70.0825 |  | yes | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 7 | timeout | no |  | 70.1324 |  | no | problems/drone_problem_ex1_d1_r1_l7_p7_c7_g7_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 8 | timeout | no |  | 70.0874 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 8 | timeout | no |  | 70.0780 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 8 | timeout | no |  | 70.0794 |  | yes | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 8 | timeout | no |  | 70.0914 |  | no | problems/drone_problem_ex1_d1_r1_l8_p8_c8_g8_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 9 | timeout | no |  | 70.0777 |  | yes | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 9 | timeout | no |  | 70.0894 |  | yes | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 9 | timeout | no |  | 70.2025 |  | yes | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 9 | timeout | no |  | 70.1527 |  | no | problems/drone_problem_ex1_d1_r1_l9_p9_c9_g9_a4.pddl |  |
+| 2.1.1 | BFS | bfs |  | 10 | timeout | no |  | 70.1187 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | IDS | ids |  | 10 | timeout | no |  | 70.1271 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | A*+hMAX | astar | hmax | 10 | timeout | no |  | 70.1260 |  | yes | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
+| 2.1.1 | GBFS+hMAX | gbf | hmax | 10 | timeout | no |  | 70.1103 |  | no | problems/drone_problem_ex1_d1_r1_l10_p10_c10_g10_a4.pddl |  |
 
 ## [TABLE_2.1.2_ALL_RUNS]
 
 | section | algorithm | search | heuristic | size | status | solved | search_time_s | wall_time_s | plan_length | optimal | problem_file | error_excerpt |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2.1.2 | GBFS | gbf | hmax | 4 | solved | yes | 2.7000 | 10.6595 | 18 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | hadd | 4 | solved | yes | 0.0600 | 3.7483 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | hff | 4 | solved | yes | 0.0540 | 3.6123 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | GBFS | gbf | landmark | 4 | solved | yes | 0.0056 | 3.5641 | 17 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | hmax | 4 | solved | yes | 1.7000 | 48.3078 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | hadd | 4 | solved | yes | 0.1400 | 3.9511 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | hff | 4 | solved | yes | 0.1000 | 3.6007 | 15 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.2 | EHC | ehs | landmark | 4 | solved | yes | 0.0066 | 3.0821 | 18 | no | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | hmax | 5 | solved | yes | 2.7000 | 66.2752 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | hadd | 5 | solved | yes | 0.1100 | 3.0880 | 19 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | hff | 5 | solved | yes | 0.1100 | 3.6667 | 19 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | GBFS | gbf | landmark | 5 | solved | yes | 0.0230 | 2.6053 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | hmax | 5 | timeout | no |  | 70.1108 |  | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | hadd | 5 | solved | yes | 0.1400 | 3.4083 | 21 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | hff | 5 | solved | yes | 0.1800 | 3.0836 | 19 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
+| 2.1.2 | EHC | ehs | landmark | 5 | solved | yes | 0.0250 | 2.7823 | 23 | no | problems/drone_problem_ex1_d1_r1_l5_p5_c5_g5_a4.pddl |  |
 
 ## [TABLE_2.1.3_ALL_RUNS]
 
 | section | algorithm | search | heuristic | size | status | solved | search_time_s | wall_time_s | plan_length | optimal | problem_file | error_excerpt |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2.1.3 | BFS | bfs |  | 4 | solved | yes | 0.9800 | 5.5718 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | IDS | ids |  | 4 | timeout | no |  | 60.1030 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | A*+hMAX | astar | hmax | 4 | timeout | no |  | 60.0763 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
-| 2.1.3 | A*+lmcut | astar | lmcut | 4 | timeout | no |  | 60.0834 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | BFS | bfs |  | 4 | solved | yes | 0.8200 | 4.5261 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | IDS | ids |  | 4 | timeout | no |  | 70.1126 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+hMAX | astar | hmax | 4 | solved | yes | 2.2000 | 63.0585 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+lmcut | astar | lmcut | 4 | timeout | no |  | 70.1412 |  | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+blind | astar | blind | 4 | solved | yes | 1.2000 | 9.7848 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
+| 2.1.3 | A*+landmark | astar | landmark | 4 | solved | yes | 1.4000 | 7.5133 | 15 | yes | problems/drone_problem_ex1_d1_r1_l4_p4_c4_g4_a4.pddl |  |
 
 ## [SUMMARY_2.1.1]
 
 | algorithm | max_solved_size | time_s | plan_length | optimal |
 | --- | --- | --- | --- | --- |
-| BFS | 4 | 0.8500 | 15 | yes |
-| IDS | 2 | 0.0056 | 7 | yes |
-| A*+hMAX | 4 | 2.2000 | 15 | yes |
-| GBFS+hMAX | 4 | 2.9000 | 18 | no |
+| BFS | 5 | 5.0000 | 19 | yes |
+| IDS | 3 | 1.9000 | 11 | yes |
+| A*+hMAX | 4 | 9.9000 | 15 | yes |
+| GBFS+hMAX | 5 | 1.7000 | 23 | no |
 
 ## [SUMMARY_2.1.2]
 
 | combo | status | time_s | plan_length | size |
 | --- | --- | --- | --- | --- |
-| GBFS/hmax | solved | 2.7000 | 18 | 4 |
-| GBFS/hadd | solved | 0.0600 | 15 | 4 |
-| GBFS/hff | solved | 0.0540 | 15 | 4 |
-| GBFS/landmark | solved | 0.0056 | 17 | 4 |
-| EHC/hmax | solved | 1.7000 | 15 | 4 |
-| EHC/hadd | solved | 0.1400 | 15 | 4 |
-| EHC/hff | solved | 0.1000 | 15 | 4 |
-| EHC/landmark | solved | 0.0066 | 18 | 4 |
+| GBFS/hmax | solved | 2.7000 | 23 | 5 |
+| GBFS/hadd | solved | 0.1100 | 19 | 5 |
+| GBFS/hff | solved | 0.1100 | 19 | 5 |
+| GBFS/landmark | solved | 0.0230 | 23 | 5 |
+| EHC/hmax | timeout |  |  | 5 |
+| EHC/hadd | solved | 0.1400 | 21 | 5 |
+| EHC/hff | solved | 0.1800 | 19 | 5 |
+| EHC/landmark | solved | 0.0250 | 23 | 5 |
 
 ## [SUMMARY_2.1.3]
 
 | combo | status | time_s | plan_length | size | optimal |
 | --- | --- | --- | --- | --- | --- |
-| BFS/- | solved | 0.9800 | 15 | 4 | yes |
+| BFS/- | solved | 0.8200 | 15 | 4 | yes |
 | IDS/- | timeout |  |  | 4 | yes |
-| A*+hMAX/hmax | timeout |  |  | 4 | yes |
+| A*+hMAX/hmax | solved | 2.2000 | 15 | 4 | yes |
 | A*+lmcut/lmcut | timeout |  |  | 4 | yes |
+| A*+blind/blind | solved | 1.2000 | 15 | 4 | yes |
+| A*+landmark/landmark | solved | 1.4000 | 15 | 4 | yes |
 
 ## [BEST_OPTIMAL_2.1.3]
 
-- `BFS/-`: `0.9800s`, plan_length=`15`
+- `BFS/-`: `0.8200s`, plan_length=`15`
