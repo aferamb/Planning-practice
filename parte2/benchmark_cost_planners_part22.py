@@ -68,15 +68,17 @@ USAGE_RE = re.compile(r"(^|\n)\s*usage:\s", re.IGNORECASE)
 
 ERROR_EXCERPT_MD_MAX_LEN = 120
 
-# Patterns to extract the planner's own reported time from its stdout.
-# This is the actual search/planning time, excluding container startup overhead.
-PLANNER_TIME_PATTERNS = [
-    re.compile(r"(\d+\.\d+)\s+seconds\s+total\s+time", re.IGNORECASE),       # metric-ff
-    re.compile(r"Total\s+time:\s*([0-9]+(?:\.[0-9]+)?)s", re.IGNORECASE),    # Fast Downward
-    re.compile(r"Planner\s+time:\s*([0-9]+(?:\.[0-9]+)?)s", re.IGNORECASE),  # FD wrapper
-    re.compile(r"search\s+time:\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),    # FD search
+# Patterns to extract the planner's own reported time from stdout.
+# Fast Downward portfolio aliases can print many internal "Search time" /
+# "Total time" lines before the overall run ends, so they need dedicated
+# handling to avoid capturing partial sub-search timings as the final runtime.
+METRIC_FF_TIME_PATTERNS = [
+    re.compile(r"(\d+\.\d+)\s+seconds\s+total\s+time", re.IGNORECASE),
     re.compile(r"total\s+time\s*[:=]\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE),
 ]
+FD_PLANNER_TIME_RE = re.compile(r"Planner\s+time:\s*([0-9]+(?:\.[0-9]+)?)s", re.IGNORECASE)
+FD_TOTAL_TIME_RE = re.compile(r"Total\s+time:\s*([0-9]+(?:\.[0-9]+)?)s", re.IGNORECASE)
+FD_SEARCH_TIME_RE = re.compile(r"search\s+time:\s*([0-9]+(?:\.[0-9]+)?)", re.IGNORECASE)
 
 RAW_HEADERS = [
     "planner",
@@ -271,21 +273,56 @@ def parse_plan_length(output: str) -> int | None:
     return None
 
 
-def parse_planner_time(output: str) -> float | None:
-    """Extract the planner's own reported runtime from its stdout.
+def _last_float_match(pattern: re.Pattern[str], output: str) -> float | None:
+    matches = pattern.findall(output)
+    if not matches:
+        return None
+    try:
+        return float(matches[-1])
+    except ValueError:
+        return None
 
-    This is the actual search time as reported by the planner, *not* the
-    total wall-clock time of the subprocess (which includes container
-    startup, Python overhead, etc.).
-    Returns None if no timing line is found.
+
+def parse_planner_time(output: str, tool: str, timed_out: bool) -> float | None:
+    """Extract the planner runtime that best represents the full solver run.
+
+    Rules:
+    - For timeouts, return None instead of partial internal search times.
+    - For metric-ff, use the legacy timing patterns.
+    - For Fast Downward, prefer the final wrapper-level "Planner time" when it
+      exists. For non-portfolio runs without that line, fall back to the final
+      "Total time" and then to the final "Search time".
     """
-    for pattern in PLANNER_TIME_PATTERNS:
-        matches = pattern.findall(output)
-        if matches:
-            try:
-                return float(matches[-1])
-            except ValueError:
-                continue
+    if timed_out:
+        return None
+
+    if tool == "metric-ff":
+        for pattern in METRIC_FF_TIME_PATTERNS:
+            value = _last_float_match(pattern, output)
+            if value is not None:
+                return value
+        return None
+
+    if tool == "downward":
+        planner_time = _last_float_match(FD_PLANNER_TIME_RE, output)
+        if planner_time is not None:
+            return planner_time
+
+        lowered = output.lower()
+        is_portfolio_like = ("search portfolio:" in lowered) or ("solution found - keep searching" in lowered)
+        if is_portfolio_like:
+            return None
+
+        total_time = _last_float_match(FD_TOTAL_TIME_RE, output)
+        if total_time is not None:
+            return total_time
+
+        return _last_float_match(FD_SEARCH_TIME_RE, output)
+
+    for pattern in METRIC_FF_TIME_PATTERNS:
+        value = _last_float_match(pattern, output)
+        if value is not None:
+            return value
     return None
 
 
@@ -500,7 +537,7 @@ def run_planner_once(
 
             plan_cost = parse_plan_cost(out)
             plan_length = parse_plan_length(out)
-            planner_time = parse_planner_time(out)
+            planner_time = parse_planner_time(out, spec.tool, timed_out)
             if spec.tool == "downward":
                 # Copy plan file back from tmp to the artifacts dir if it exists
                 if eff_plan_file.exists() and eff_plan_file != plan_file:

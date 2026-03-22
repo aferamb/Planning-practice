@@ -123,9 +123,9 @@ Main behavior:
 cd parte1
 python3 benchmark_pyperplan_part13.py \
   --min-size 2 \
-  --max-size 40 \
-  --step 2 \
-  --timeout 60 \
+  --max-size 10 \
+  --step 1 \
+  --timeout 80 \
   --domain dronedomain.pddl \
   --generator generate-problem.py \
   --results-dir results
