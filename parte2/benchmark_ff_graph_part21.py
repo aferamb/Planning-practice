@@ -58,7 +58,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run FF benchmark for exercise 2.1")
     parser.add_argument("--min-size", type=int, default=2, help="minimum complexity value")
     parser.add_argument("--max-size", type=int, default=60, help="maximum complexity value")
-    parser.add_argument("--step", type=int, default=2, help="increment between complexity values")
+    parser.add_argument("--step", type=int, default=1, help="increment between complexity values")
     parser.add_argument("--sizes", default=None, help="comma-separated list of sizes")
 
     parser.add_argument("--timeout", type=int, default=60, help="timeout per instance in seconds")
@@ -557,6 +557,9 @@ def write_md_report(path: Path, rows: list[BenchmarkRow], args: argparse.Namespa
 
 
 def save_png(rows: list[BenchmarkRow], output_path: Path, timeout_s: int, allow_basic_plots: bool) -> None:
+    if timeout_s <= 0:
+        timeout_s = 1
+
     if not HAVE_MATPLOTLIB:
         if not allow_basic_plots:
             raise RuntimeError(
@@ -566,28 +569,115 @@ def save_png(rows: list[BenchmarkRow], output_path: Path, timeout_s: int, allow_
         save_png_basic(rows, output_path, timeout_s)
         return
 
-    solved_points = [(r.size, r.ff_time_s) for r in rows if r.solved and r.ff_time_s is not None and r.size >= 0]
-    timeout_points = [(r.size, float(timeout_s)) for r in rows if r.status != "solved" and r.size >= 0]
+    valid_rows = sorted((r for r in rows if r.size >= 0), key=lambda row: row.size)
+    if not valid_rows:
+        plt.figure(figsize=(16, 9), facecolor="#f8fafc")
+        plt.title("FF Benchmark (Complexity vs Time)")
+        plt.savefig(output_path, dpi=160)
+        plt.close()
+        return
 
-    plt.figure(figsize=(11, 6))
-    if solved_points:
-        xs = [p[0] for p in solved_points]
-        ys = [p[1] for p in solved_points]
-        plt.plot(xs, ys, marker="o", label="solved")
-    if timeout_points:
-        tx = [p[0] for p in timeout_points]
-        ty = [p[1] for p in timeout_points]
-        plt.scatter(tx, ty, marker="x", color="red", label="not solved")
+    solved_rows = [row for row in valid_rows if row.solved and row.ff_time_s is not None]
+    timeout_rows = [row for row in valid_rows if not row.solved or row.ff_time_s is None]
+    plot_values = [row.ff_time_s if row.ff_time_s is not None else float(timeout_s) for row in valid_rows]
+    x_values = [row.size for row in valid_rows]
 
-    plt.axhline(float(timeout_s), color="gray", linestyle="--", linewidth=1, label=f"timeout={timeout_s}s")
-    plt.xlabel("Problem size (l=p=c=g)")
-    plt.ylabel("Time (s)")
-    plt.title("2.1 FF Benchmark (size vs time)")
-    plt.grid(True, alpha=0.3)
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=140)
-    plt.close()
+    fig, ax = plt.subplots(figsize=(16, 9), facecolor="#f8fafc")
+    ax.set_facecolor("#f8fafc")
+
+    ax.plot(x_values, plot_values, color="#2563eb", linewidth=2.2, zorder=2)
+
+    if solved_rows:
+        ax.scatter(
+            [row.size for row in solved_rows],
+            [row.ff_time_s for row in solved_rows if row.ff_time_s is not None],
+            s=42,
+            color="#1d4ed8",
+            label="solved",
+            zorder=3,
+        )
+    if timeout_rows:
+        ax.scatter(
+            [row.size for row in timeout_rows],
+            [float(timeout_s)] * len(timeout_rows),
+            s=54,
+            marker="x",
+            linewidths=1.8,
+            color="#b91c1c",
+            label="not solved",
+            zorder=4,
+        )
+
+    for row in valid_rows:
+        y_value = row.ff_time_s if row.ff_time_s is not None else float(timeout_s)
+        if row.solved and row.ff_time_s is not None:
+            label = f"{row.ff_time_s:.2f}s"
+            text_color = "#1e293b"
+        else:
+            label = "timeout"
+            text_color = "#991b1b"
+        ax.annotate(
+            label,
+            (row.size, y_value),
+            textcoords="offset points",
+            xytext=(0, 10),
+            ha="center",
+            va="bottom",
+            fontsize=8,
+            color=text_color,
+            clip_on=False,
+            zorder=5,
+        )
+
+    ax.axhline(
+        float(timeout_s),
+        color="#64748b",
+        linestyle="--",
+        linewidth=1.2,
+        label=f"timeout={timeout_s}s",
+        zorder=1,
+    )
+
+    x_min = min(x_values)
+    x_max = max(x_values)
+    if x_min == x_max:
+        ax.set_xlim(x_min - 1, x_max + 1)
+    else:
+        ax.set_xlim(x_min - 0.6, x_max + 0.6)
+    ax.set_ylim(0, float(timeout_s))
+    ax.set_xticks(x_values)
+
+    major_y_ticks = list(range(0, timeout_s + 1, 5)) if timeout_s >= 5 else list(range(0, timeout_s + 1))
+    if timeout_s not in major_y_ticks:
+        major_y_ticks.append(timeout_s)
+    ax.set_yticks(sorted(set(major_y_ticks)))
+    ax.set_yticks(list(range(0, timeout_s + 1)), minor=True)
+
+    ax.grid(True, which="major", axis="y", color="#cbd5e1", linewidth=1.0)
+    ax.grid(True, which="minor", axis="y", color="#e2e8f0", linewidth=0.6)
+    ax.grid(True, which="major", axis="x", color="#e2e8f0", linewidth=0.6, alpha=0.7)
+
+    for spine in ax.spines.values():
+        spine.set_color("#334155")
+        spine.set_linewidth(1.2)
+    ax.tick_params(axis="x", colors="#334155", labelsize=9)
+    ax.tick_params(axis="y", colors="#334155", labelsize=9)
+
+    fig.suptitle("FF Benchmark (Complexity vs Time)", fontsize=20, color="#0f172a", x=0.08, ha="left")
+    ax.set_title(
+        "Complexity = l=p=c=g. Unsolved instances are shown at timeout line.",
+        fontsize=11,
+        color="#334155",
+        loc="left",
+        pad=18,
+    )
+    ax.set_xlabel("Complexity (l=p=c=g)", fontsize=12, color="#0f172a")
+    ax.set_ylabel("Time (seconds)", fontsize=12, color="#0f172a")
+    ax.legend(loc="upper left")
+
+    fig.subplots_adjust(top=0.82, left=0.08, right=0.98, bottom=0.12)
+    fig.savefig(output_path, dpi=160, facecolor=fig.get_facecolor())
+    plt.close(fig)
 
 
 def make_canvas(width: int, height: int, color: tuple[int, int, int] = (255, 255, 255)) -> bytearray:
