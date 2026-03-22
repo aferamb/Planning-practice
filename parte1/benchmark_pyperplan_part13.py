@@ -94,6 +94,7 @@ RUN_TABLE_HEADERS = [
 RUN_COL_PROBLEM_FILE = RUN_TABLE_HEADERS.index("problem_file")
 RUN_COL_ERROR_EXCERPT = RUN_TABLE_HEADERS.index("error_excerpt")
 ERROR_EXCERPT_MD_MAX_LEN = 120
+CERTIFIABLY_OPTIMAL_ALGORITHMS = {"BFS", "IDS", "A*+hMAX"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -461,7 +462,7 @@ def run_section_131(
             rows.append(row)
             t = "-" if row.search_time_s is None else f"{row.search_time_s:.4f}"
             print(f"[1.3.1 size={size} {algorithm}] status={row.status} time={t}")
-    return rows
+    return assign_proven_plan_optimality(rows)
 
 
 def largest_solved(rows: list[RunRow], algorithm: str) -> RunRow | None:
@@ -469,6 +470,32 @@ def largest_solved(rows: list[RunRow], algorithm: str) -> RunRow | None:
     if not solved:
         return None
     return max(solved, key=lambda r: r.size)
+
+
+def assign_proven_plan_optimality(rows: list[RunRow]) -> list[RunRow]:
+    rows_by_problem: dict[str, list[RunRow]] = {}
+    for row in rows:
+        rows_by_problem.setdefault(row.problem_file, []).append(row)
+
+    for group in rows_by_problem.values():
+        certified_lengths = [
+            row.plan_length
+            for row in group
+            if row.algorithm in CERTIFIABLY_OPTIMAL_ALGORITHMS
+            and row.status == "solved"
+            and row.plan_length is not None
+        ]
+        optimal_length = min(certified_lengths) if certified_lengths else None
+
+        for row in group:
+            if row.status != "solved" or row.plan_length is None or optimal_length is None:
+                row.optimal = ""
+            elif row.plan_length == optimal_length:
+                row.optimal = "yes"
+            else:
+                row.optimal = "no"
+
+    return rows
 
 
 def run_section_132(
@@ -596,7 +623,7 @@ def run_section_133(
         rows.append(row)
         t = "-" if row.search_time_s is None else f"{row.search_time_s:.4f}"
         print(f"[1.3.3 {algorithm}] status={row.status} time={t}")
-    return rows
+    return assign_proven_plan_optimality(rows)
 
 
 def summarize_131(rows: list[RunRow]) -> list[dict[str, str]]:
