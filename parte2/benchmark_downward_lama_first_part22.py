@@ -24,6 +24,16 @@ import shlex
 import sys
 from pathlib import Path
 
+try:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    HAVE_MATPLOTLIB = True
+except Exception:
+    HAVE_MATPLOTLIB = False
+
 from benchmark_cost_planners_part22 import (
     RAW_HEADERS,
     GenerationRow,
@@ -67,6 +77,15 @@ def resolve_script_relative(path_value: str) -> Path:
     return (SCRIPT_DIR / path).resolve()
 
 
+def resolve_output_path(results_dir: Path, custom_value: str | None, default_name: str) -> Path:
+    if not custom_value:
+        return results_dir / default_name
+    path = Path(custom_value)
+    if path.is_absolute():
+        return path.resolve()
+    return (results_dir / path).resolve()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Benchmark only downward:lama-first for larger Part 2.2 instances"
@@ -105,6 +124,11 @@ def parse_args() -> argparse.Namespace:
         "--results-dir",
         default="results/lama_first_part22",
         help="output folder for this standalone benchmark",
+    )
+    parser.add_argument(
+        "--png-out",
+        default=None,
+        help="custom PNG output name/path for the lama-first runtime-vs-size chart",
     )
 
     parser.add_argument("--drones", type=int, default=1, help="number of drones")
@@ -196,6 +220,7 @@ def write_md_report(
     summary: list[list[str]],
     results_dir: Path,
     stop_reason: str | None,
+    png_path: Path | None,
 ) -> None:
     lines: list[str] = []
     lines.append("# Benchmark downward:lama-first - Practice 1 Part 2 Exercise 2.2")
@@ -236,6 +261,12 @@ def write_md_report(
     add_table_md(lines, "[RAW_ROWS]", RAW_HEADERS, raw_rows_for_md)
     add_table_md(lines, "[TABLE_LAMA_FIRST_SUMMARY]", SUMMARY_HEADERS, summary)
 
+    if png_path is not None:
+        lines.append("## [PLOT]")
+        lines.append("")
+        lines.append(f"![{png_path.stem}]({png_path.name})")
+        lines.append("")
+
     if error_details:
         lines.append("## [ERROR_DETAILS]")
         lines.append("")
@@ -247,6 +278,141 @@ def write_md_report(
             lines.append("")
 
     output_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def runtime_plot_value(row: RunRow, timeout_s: int) -> tuple[float, str, str]:
+    if row.status == "solved":
+        if row.planner_time_s is not None:
+            return row.planner_time_s, f"{row.planner_time_s:.2f}s", "#1e293b"
+        return row.wall_time_s, f"wall {row.wall_time_s:.2f}s", "#1e293b"
+
+    if row.status == "timeout":
+        return float(timeout_s), "timeout", "#991b1b"
+    return float(timeout_s), row.status, "#991b1b"
+
+
+def save_lama_runtime_png(rows: list[RunRow], output_path: Path, timeout_s: int) -> None:
+    if not HAVE_MATPLOTLIB:
+        raise RuntimeError(
+            "matplotlib is required to generate readable PNG output. "
+            "Install it with `pip install matplotlib`."
+        )
+
+    if timeout_s <= 0:
+        timeout_s = 1
+
+    valid_rows = sorted((r for r in rows if r.size >= 0), key=lambda row: row.size)
+    if not valid_rows:
+        plt.figure(figsize=(16, 9), facecolor="#f8fafc")
+        plt.title("Downward lama-first Benchmark (Complexity vs Time)")
+        plt.savefig(output_path, dpi=160)
+        plt.close()
+        return
+
+    solved_points: list[tuple[int, float]] = []
+    timeout_points: list[tuple[int, float]] = []
+    x_values: list[int] = []
+    plot_values: list[float] = []
+
+    for row in valid_rows:
+        y_value, _, _ = runtime_plot_value(row, timeout_s)
+        x_values.append(row.size)
+        plot_values.append(y_value)
+        if row.status == "solved":
+            solved_points.append((row.size, y_value))
+        else:
+            timeout_points.append((row.size, float(timeout_s)))
+
+    fig, ax = plt.subplots(figsize=(16, 9), facecolor="#f8fafc")
+    ax.set_facecolor("#f8fafc")
+
+    ax.plot(x_values, plot_values, color="#2563eb", linewidth=2.2, zorder=2)
+
+    if solved_points:
+        ax.scatter(
+            [x for x, _ in solved_points],
+            [y for _, y in solved_points],
+            s=42,
+            color="#1d4ed8",
+            label="solved",
+            zorder=3,
+        )
+    if timeout_points:
+        ax.scatter(
+            [x for x, _ in timeout_points],
+            [y for _, y in timeout_points],
+            s=54,
+            marker="x",
+            linewidths=1.8,
+            color="#b91c1c",
+            label="not solved",
+            zorder=4,
+        )
+
+    for row in valid_rows:
+        y_value, label, text_color = runtime_plot_value(row, timeout_s)
+        ax.annotate(
+            label,
+            (row.size, y_value),
+            textcoords="offset points",
+            xytext=(0, 10),
+            ha="center",
+            va="bottom",
+            fontsize=8,
+            color=text_color,
+            clip_on=False,
+            zorder=5,
+        )
+
+    ax.axhline(
+        float(timeout_s),
+        color="#64748b",
+        linestyle="--",
+        linewidth=1.2,
+        label=f"timeout={timeout_s}s",
+        zorder=1,
+    )
+
+    x_min = min(x_values)
+    x_max = max(x_values)
+    if x_min == x_max:
+        ax.set_xlim(x_min - 1, x_max + 1)
+    else:
+        ax.set_xlim(x_min - 0.6, x_max + 0.6)
+    ax.set_ylim(0, float(timeout_s))
+    ax.set_xticks(x_values)
+
+    major_y_ticks = list(range(0, timeout_s + 1, 5)) if timeout_s >= 5 else list(range(0, timeout_s + 1))
+    if timeout_s not in major_y_ticks:
+        major_y_ticks.append(timeout_s)
+    ax.set_yticks(sorted(set(major_y_ticks)))
+    ax.set_yticks(list(range(0, timeout_s + 1)), minor=True)
+
+    ax.grid(True, which="major", axis="y", color="#cbd5e1", linewidth=1.0)
+    ax.grid(True, which="minor", axis="y", color="#e2e8f0", linewidth=0.6)
+    ax.grid(True, which="major", axis="x", color="#e2e8f0", linewidth=0.6, alpha=0.7)
+
+    for spine in ax.spines.values():
+        spine.set_color("#334155")
+        spine.set_linewidth(1.2)
+    ax.tick_params(axis="x", colors="#334155", labelsize=9)
+    ax.tick_params(axis="y", colors="#334155", labelsize=9)
+
+    fig.suptitle("Downward lama-first Benchmark (Complexity vs Time)", fontsize=20, color="#0f172a", x=0.08, ha="left")
+    ax.set_title(
+        "Complexity = l=p=c=g. Non-solved instances are shown at timeout line.",
+        fontsize=11,
+        color="#334155",
+        loc="left",
+        pad=18,
+    )
+    ax.set_xlabel("Complexity (l=p=c=g)", fontsize=12, color="#0f172a")
+    ax.set_ylabel("Planner time (seconds)", fontsize=12, color="#0f172a")
+    ax.legend(loc="upper left")
+
+    fig.subplots_adjust(top=0.82, left=0.08, right=0.98, bottom=0.12)
+    fig.savefig(output_path, dpi=160, facecolor=fig.get_facecolor())
+    plt.close(fig)
 
 
 def run_explicit_problems(
@@ -436,6 +602,7 @@ def main() -> None:
     summary_csv = results_dir / "benchmark_downward_lama_first_part22_summary.csv"
     txt_path = results_dir / "benchmark_downward_lama_first_part22.txt"
     md_path = results_dir / "benchmark_downward_lama_first_part22.md"
+    png_path = resolve_output_path(results_dir, args.png_out, "benchmark_downward_lama_first_part22.png")
 
     write_csv_table(all_csv, RAW_HEADERS, [run_row_values(r) for r in rows])
     write_summary_csv(summary_csv, summary)
@@ -447,6 +614,7 @@ def main() -> None:
         summary=summary,
         stop_reason=stop_reason,
     )
+    save_lama_runtime_png(rows=rows, output_path=png_path, timeout_s=args.timeout)
     write_md_report(
         output_path=md_path,
         args=args,
@@ -455,6 +623,7 @@ def main() -> None:
         summary=summary,
         results_dir=results_dir,
         stop_reason=stop_reason,
+        png_path=png_path,
     )
 
     print("\nDone.")
@@ -462,6 +631,7 @@ def main() -> None:
     print(f"CSV: {summary_csv}")
     print(f"TXT: {txt_path}")
     print(f"MD:  {md_path}")
+    print(f"IMG: {png_path}")
     if stop_reason:
         print(f"STOP: {stop_reason}")
 
