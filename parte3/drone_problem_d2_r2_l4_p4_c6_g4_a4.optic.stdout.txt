@@ -1,0 +1,61 @@
+Number of literals: 78
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+Post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+[01;34mNo analytic limits found, not considering limit effects of goal-only operators[00m
+All the ground actions in this problem are compression-safe
+Initial heuristic = 8.000, admissible cost estimate 0.000
+b (5.000 | 208.001)b (4.000 | 208.001)b (3.000 | 208.001)b (2.000 | 528.005)b (1.000 | 944.008)(G)
+; No metric specified - using makespan
+
+; Plan found with metric 949.010
+; States evaluated so far: 198
+; States pruned based on pre-heuristic cost lower bound: 0
+; Time 0.81
+0.000: (pick-up-box drone1 crate3 depot)  [5.000]
+0.000: (pick-up-box drone2 crate1 depot)  [5.000]
+5.001: (fly drone1 depot loc3)  [203.000]
+5.001: (fly drone2 depot loc4)  [155.000]
+160.002: (deliver-box drone2 crate1 person3 loc4 food)  [5.000]
+165.003: (fly drone2 loc4 depot)  [155.000]
+208.002: (deliver-box drone1 crate3 person4 loc3 medicine)  [5.000]
+213.003: (fly drone1 loc3 loc1)  [192.000]
+320.004: (pick-up-box drone2 crate4 depot)  [5.000]
+325.005: (fly drone2 depot loc3)  [203.000]
+405.004: (fly drone1 loc1 loc3)  [192.000]
+528.006: (deliver-box drone2 crate4 person2 loc3 medicine)  [5.000]
+533.007: (fly drone2 loc3 depot)  [203.000]
+597.005: (fly drone1 loc3 loc1)  [192.000]
+736.008: (pick-up-box drone2 crate5 depot)  [5.000]
+741.009: (fly drone2 depot loc3)  [203.000]
+944.010: (deliver-box drone2 crate5 person1 loc3 medicine)  [5.000]
+
+ * All goal deadlines now no later than 949.010
+
+Resorting to best-first search
+Running WA* with W = 5.000, not restarting with goal states
+b (7.000 | 208.001)b (6.000 | 208.001)b (5.000 | 208.001)b (4.000 | 226.003)b (3.000 | 231.004)b (2.000 | 599.007)b (1.000 | 624.005)(G)
+; No metric specified - using makespan
+
+; Plan found with metric 629.006
+; States evaluated so far: 38157
+; States pruned based on pre-heuristic cost lower bound: 40808
+; Time 104.57
+0.000: (fly drone1 depot loc1)  [33.000]
+0.000: (pick-up-box drone2 crate3 depot)  [5.000]
+5.001: (fly drone2 depot loc3)  [203.000]
+33.001: (fly drone1 loc1 depot)  [33.000]
+66.002: (pick-up-box drone1 crate1 depot)  [5.000]
+71.003: (fly drone1 depot loc4)  [155.000]
+208.002: (deliver-box drone2 crate3 person4 loc3 medicine)  [5.000]
+213.003: (fly drone2 loc3 depot)  [203.000]
+226.004: (deliver-box drone1 crate1 person3 loc4 food)  [5.000]
+231.005: (fly drone1 loc4 depot)  [155.000]
+386.006: (pick-up-box drone1 crate4 depot)  [5.000]
+391.007: (fly drone1 depot loc3)  [203.000]
+416.004: (pick-up-box drone2 crate5 depot)  [5.000]
+421.005: (fly drone2 depot loc3)  [203.000]
+594.008: (deliver-box drone1 crate4 person1 loc3 medicine)  [5.000]
+624.006: (deliver-box drone2 crate5 person2 loc3 medicine)  [5.000]
+
+ * All goal deadlines now no later than 629.006
+b (0.000 | 629.006)(G)(G)(G)(G)(G)(G)(G)(G)(G)(G)

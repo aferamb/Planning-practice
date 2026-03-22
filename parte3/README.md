@@ -141,6 +141,24 @@ Salidas por defecto en `results/`:
 
 ### Comandos útiles
 
+Sí. Si en tu entorno planutils run optic funciona normal, el comando simple es este, ejecutándolo desde Planning-practice/parte3:
+```bash
+cd /mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3                                                                                                                                                          
+planutils run optic -- dronedomain.pddl drone_problem_d1_r1_l2_p2_c2_g2_a2.pddl                                                                                                                                                                                              
+```
+Y para el segundo problema:                                                                                                                                                                                                                                                  
+```bash
+cd /mnt/c/Users/05jan/Desktop/Tareas/Uni/3_Curso/2_cuatri/Planificacion_automatica/Lab/PL1/Planning-practice/parte3                                                                                                                                                          
+planutils run optic -- dronedomain.pddl drone_problem_d2_r2_l4_p4_c6_g4_a4.pddl                                                                                                                                                                                              
+```
+Si quieres guardar la salida en fichero:                                                                                                                                                                                                                                     
+```bash
+planutils run optic -- dronedomain.pddl drone_problem_d1_r1_l2_p2_c2_g2_a2.pddl > drone_problem_d1_r1_l2_p2_c2_g2_a2.optic.stdout.txt                                                                                                                                        
+planutils run optic -- dronedomain.pddl drone_problem_d2_r2_l4_p4_c6_g4_a4.pddl > drone_problem_d2_r2_l4_p4_c6_g4_a4.optic.stdout.txt                                                                                                                                        
+```
+Y si quieres sacar solo el plan final, lo normal es copiar manualmente el último bloque de acciones temporales que imprime OPTIC.                                                                                                                                            
+
+
 ```bash
 # Ejecución estándar V2
 python3 benchmark_optic_part3.py --timeout 60
