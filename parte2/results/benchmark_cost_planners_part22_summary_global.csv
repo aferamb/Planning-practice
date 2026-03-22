@@ -1,8 +1,8 @@
 planner,family,max_solved_size,plan_cost_at_max_size,plan_length_at_max_size,wall_time_s_at_max_size,count_solved,count_timeout,count_unsolved,count_unsupported,count_error
-metric-ff,sat,10,2869.0000,42,2.8893,9,0,0,0,2
-downward:lama-first,sat,12,4013.0000,51,5.6442,11,0,0,0,0
-downward:seq-sat-fdss-2,sat,5,432.0000,19,15.3693,4,7,0,0,0
-downward:seq-sat-fd-autotune-2,sat,5,706.0000,19,49.6243,4,7,0,0,0
-downward:seq-opt-lmcut,opt,5,432.0000,21,22.5847,4,7,0,0,0
-downward:seq-opt-bjolp,opt,6,555.0000,29,23.9441,5,6,0,0,0
-downward:seq-opt-fdss-2,opt,7,600.0000,33,57.3855,6,5,0,0,0
+metric-ff,sat,10,3259.0000,39,2.0460,9,0,0,0,2
+downward:lama-first,sat,12,3038.0000,51,4.1125,11,0,0,0,0
+downward:seq-sat-fdss-2,sat,5,617.0000,19,15.3817,4,7,0,0,0
+downward:seq-sat-fd-autotune-2,sat,4,384.0000,18,15.3050,3,8,0,0,0
+downward:seq-opt-lmcut,opt,6,680.0000,29,96.1500,5,6,0,0,0
+downward:seq-opt-bjolp,opt,7,452.0000,33,47.6772,6,5,0,0,0
+downward:seq-opt-fdss-2,opt,7,452.0000,33,51.9132,6,5,0,0,0

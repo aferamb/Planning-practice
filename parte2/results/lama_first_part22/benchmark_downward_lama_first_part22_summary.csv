@@ -1,0 +1,2 @@
+planner,family,max_solved_size,plan_cost_at_max_size,plan_length_at_max_size,wall_time_s_at_max_size,count_solved,count_timeout,count_unsolved,count_unsupported,count_error
+downward:lama-first,sat,67,23114.0000,284,58.8010,64,5,0,0,0
